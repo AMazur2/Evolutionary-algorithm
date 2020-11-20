@@ -1,0 +1,5 @@
+from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentInterface import SimulationComponentInterface
+
+
+class SurviviorSelectorInterface(SimulationComponentInterface):
+    pass
