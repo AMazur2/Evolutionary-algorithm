@@ -2,4 +2,6 @@ from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentInterface
 
 
 class RecombinatorInterface(SimulationComponentInterface):
-    pass
+    @abstractmethod
+    def recombinate(self):
+        pass

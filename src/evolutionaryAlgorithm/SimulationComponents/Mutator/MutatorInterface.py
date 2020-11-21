@@ -2,4 +2,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentInterface
 
 
 class MutatorInterface(SimulationComponentInterface):
-    pass
+    
+    @abstractmethod
+    def mutate(self):
+        pass

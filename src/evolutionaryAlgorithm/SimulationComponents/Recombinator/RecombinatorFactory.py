@@ -3,4 +3,19 @@ from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentFactoryIn
 
 
 class RecombinatorFactory(SimulationComponentFactoryInterface):
-    pass
+    @staticmethod
+    def validate(config: dict):
+        pass
+
+    @staticmethod
+    def build(config: dict) -> InitializatorInterface:
+        recombinator = config["Recombinator"]
+        if recombinator["Type"] == "singlePointRecombinator":
+            return singlePointRecombinator()
+        elif recombinator["Type"] == "twoPointRecombinator":
+            return twoPointRecombinator
+        elif recombinator["Type"] == "averageRecombinator":
+            return averageRecombinator
+
+        else:
+            raise NotImplementedError()

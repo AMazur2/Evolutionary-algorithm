@@ -3,4 +3,15 @@ from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentFactoryIn
 
 
 class MutatorFactory(SimulationComponentFactoryInterface):
-    pass
+    @staticmethod
+    def validate(config: dict):
+        pass
+
+    @staticmethod
+    def build(config: dict) -> InitializatorInterface:
+        mutator = config["Mutator"]
+        if mutator["Type"] == "Gauss":
+            return GaussMutator(mutator["Arguments"]["Sigma"])
+
+        else:
+            raise NotImplementedError()

@@ -2,4 +2,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentInterface
 
 
 class ParentSelectorInterface(SimulationComponentInterface):
-    pass
+    
+    @abstract
+    def marry(self):
+        pass
