@@ -1,20 +1,21 @@
 from typing import List
 
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
-from src.evolutionaryAlgorithm.SimulationComponents.Initializator.InitializatorFactory import InitializatorFactory
-from src.evolutionaryAlgorithm.SimulationComponents.Mutator.MutatorFactory import MutatorFactory
-from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.ParentSelectorFactory import ParentSelectorFactory
-from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorFactory import RecombinatorFactory
-from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.SurviviorSelectorFactory import \
-    SurviviorSelectorFactory
+from src.evolutionaryAlgorithm.SimulationComponents.Initializator.InitializatorInerface import InitializatorInterface
+from src.evolutionaryAlgorithm.SimulationComponents.Mutator.MutatorInterface import MutatorInterface
+from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.ParentSelectorInterface import \
+    ParentSelectorInterface
+from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorInterface import RecombinatorInterface
+from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.SurviviorSelectorInterface import \
+    SurviviorSelectorInterface
 
 
 class EvolutionSimulator:
-    initializator: InitializatorFactory
-    recombinator: RecombinatorFactory
-    mutator: MutatorFactory
-    parentSelector: ParentSelectorFactory
-    survivorSelector: SurviviorSelectorFactory
+    initializator: InitializatorInterface
+    recombinator: RecombinatorInterface
+    mutator: MutatorInterface
+    parentSelector: ParentSelectorInterface
+    survivorSelector: SurviviorSelectorInterface
 
     population: List[IndividualInterface]
 
@@ -49,7 +50,7 @@ class EvolutionSimulator:
             self.isEndSimulation = True  # TODO Remove me
 
     def initialize_population(self) -> List[IndividualInterface]:
-        pass
+        return self.initializator.initialize()
 
     def endSimulation(self) -> bool:
         return self.isEndSimulation
