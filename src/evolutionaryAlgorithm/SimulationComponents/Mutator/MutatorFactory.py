@@ -11,7 +11,7 @@ class MutatorFactory(SimulationComponentFactoryInterface):
     def build(config: dict) -> InitializatorInterface:
         mutator = config["Mutator"]
         if mutator["Type"] == "Gauss":
-            return GaussMutator(mutator["Arguments"]["Sigma"])
+            return GaussMutator(mutator["Arguments"]["Sigma"], mutator["Arguments"]["Probability"])
 
         else:
             raise NotImplementedError()

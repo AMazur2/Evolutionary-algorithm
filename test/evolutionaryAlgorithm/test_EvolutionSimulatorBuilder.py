@@ -18,10 +18,14 @@ def test_create_evolution_simulator_from_dict():
                                          }
                                      }},
         "FitnessFunction": {"Type": "Simple"},
-        "Recombinator": {"Type": "singlePointRecombinator"},
+        "Recombinator": {"Type": "singlePointRecombinator",
+                        "Arguments" : {
+                            "Probability" : 0.85
+                        }},
         "Mutator": {"Type": "Gauss",
                     "Arguments": {
-                        "Sigma": 1.0
+                        "Sigma": 1.0,
+                        "Probability" : 0.5
                     }},
         "ParentSelector": {"Type": "simpleParentSelector"},
         "SurvivorSelector": {"Type": "simpleSurvivorSelector"}

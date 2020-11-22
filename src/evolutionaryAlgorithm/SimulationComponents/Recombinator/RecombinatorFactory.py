@@ -11,11 +11,11 @@ class RecombinatorFactory(SimulationComponentFactoryInterface):
     def build(config: dict) -> InitializatorInterface:
         recombinator = config["Recombinator"]
         if recombinator["Type"] == "singlePointRecombinator":
-            return singlePointRecombinator()
+            return singlePointRecombinator(recombinator["Arguments"]["Probability"])
         elif recombinator["Type"] == "twoPointRecombinator":
-            return twoPointRecombinator
+            return twoPointRecombinator(recombinator["Arguments"]["Probability"])
         elif recombinator["Type"] == "averageRecombinator":
-            return averageRecombinator
+            return averageRecombinator(recombinator["Arguments"]["Probability"])
 
         else:
             raise NotImplementedError()
