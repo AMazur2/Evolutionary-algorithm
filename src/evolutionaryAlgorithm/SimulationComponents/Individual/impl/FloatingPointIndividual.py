@@ -5,7 +5,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterfa
 
 class FloatingPointIndividual(IndividualInterface):
 
-    def FloatingPointIndividual(self, representation: List[float]) -> IndividualInterface:
+    def __init__(self, representation: List[float]):
         self.representation = representation
 
     def getRepresentation(self):
