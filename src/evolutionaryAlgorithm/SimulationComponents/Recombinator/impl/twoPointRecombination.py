@@ -10,15 +10,16 @@ class twoPointRecombinator(RecombinatorInterface):
     def __init__ (self, probability: float):
         self.probability = probability
 
-    def recombinate(self, Marriages: List):
-        i = len(Marriages[0][0])
-        k = randint(0, i)
+    def recombine(self, marriages: List):
+        dim = len(marriages[0][0])
+        firstPoint = randint(0, dim)
+        secondPoint = randint(firstPoint, dim)
         childrens = []
-        for el in Marraiges:
+        for el in marriages:
             temp1, temp2 = [], []
             if random() <= self.probability:
-                for j in range(i):
-                    if j < k or j >= l:
+                for j in range(dim):
+                    if j < firstPoint or j >= secondPoint:
                         temp1.append(el[0][j])
                         temp2.append(el[1][j])
                     else:

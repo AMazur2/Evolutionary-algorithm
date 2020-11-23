@@ -6,7 +6,8 @@ from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterfa
 
 class simpleParentSelector(ParentSelectorInterface):
 
-    def __init__ (self)
+    def __init__(self):
+        pass
     
     def marry(self, Population: List[IndividualInterface]):
         marriages = []
@@ -16,7 +17,6 @@ class simpleParentSelector(ParentSelectorInterface):
             for j in range(2):
                 k = randint(0,len(Population))
                 temp.append(Population[k])
-                del Population[k]
             marriages.append(temp)
         return marriages
         

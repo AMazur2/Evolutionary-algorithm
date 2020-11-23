@@ -10,11 +10,11 @@ class singlePointRecombinator(RecombinatorInterface):
     def __init__ (self, probability: float):
         self.probability = probability
 
-    def recombinate(self, Marriages: List):
-        i = len(Marriages[0][0])
+    def recombine(self, marriages: List):
+        i = len(marriages[0][0])
         k = randint(0, i)
         childrens = []
-        for el in Marraiges:
+        for el in marriages:
             temp1, temp2 = [], []
             if random() <= self.probability:
                 for j in range(i):

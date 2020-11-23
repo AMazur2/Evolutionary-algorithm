@@ -1,8 +1,10 @@
+from abc import abstractmethod
+
 from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentInterface import SimulationComponentInterface
 
 
 class ParentSelectorInterface(SimulationComponentInterface):
     
-    @abstract
+    @abstractmethod
     def marry(self):
         pass
