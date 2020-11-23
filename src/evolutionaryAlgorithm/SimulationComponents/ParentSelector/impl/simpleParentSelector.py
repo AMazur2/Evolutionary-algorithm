@@ -1,8 +1,10 @@
 from typing import List
 from random import randint
 
-from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.ParentSelectorInterface import ParentSelectorInterface
+from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.ParentSelectorInterface \
+    import ParentSelectorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
+
 
 class simpleParentSelector(ParentSelectorInterface):
 
@@ -15,9 +17,7 @@ class simpleParentSelector(ParentSelectorInterface):
         for i in range(num):
             temp = []
             for j in range(2):
-                k = randint(0,len(Population))
+                k = randint(0, len(Population))
                 temp.append(Population[k])
             marriages.append(temp)
         return marriages
-        
-
