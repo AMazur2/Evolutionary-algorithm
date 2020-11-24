@@ -40,11 +40,10 @@ class EvolutionSimulator:
     def run(self):
         population = self.initialize_population()
 
-
         while (not self.endSimulation()):
             parents = self.selectParents(population)
             offspring = self.applyRecombinations(parents)
-            self.applyMutations(offspring, population)
+            mutated = self.applyMutations(offspring, population)
             newGenerationCandidats = self.selectNewGeneration(offspring, population)
             population = self.selectPopulation(newGenerationCandidats)
 
@@ -65,9 +64,10 @@ class EvolutionSimulator:
     def selectPopulation(self, newGenerationCandidats: List[IndividualInterface]) -> List[IndividualInterface]:
         pass
 
-    def applyMutations(self, offspring: List[IndividualInterface], population: List[IndividualInterface]):
-        self.mutator.mutate(offspring)
-        self.mutator.mutate(population)
+    def applyMutations(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) -> List[
+        IndividualInterface]:
+        newPopulation = self.mutator.mutate(population, offspring)
+        return newPopulation
 
     def selectNewGeneration(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) -> List[
         IndividualInterface]:
