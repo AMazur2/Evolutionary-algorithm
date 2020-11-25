@@ -12,24 +12,15 @@ class GaussMutator(MutatorInterface):
         self.sigma = sigma
         self.probability = probability
 
-    def mutate(self, population: List[IndividualInterface], offspring: List[IndividualInterface]):
+    def mutate(self, offspring: List[IndividualInterface]):
         mutated = []
-        for el in population:
-            if random() <= self.probability:
-                temp = []
-                for i in range(len(el)):
-                    temp.append(el[i] + gauss(0, self.sigma))
-                mutated.append(temp)
-            else:
-                mutated.append(el)
 
         for el in offspring:
-            if random() <= self.probability:
-                temp = []
-                for i in range(len(el)):
+            temp = []
+            for i in range(len(el)):
+                if random() <= self.probability:
                     temp.append(el[i]+gauss(0, self.sigma))
+                else:
+                    temp.append(el[i])
                 mutated.append(temp)
-            else:
-                mutated.append(el)
-
         return mutated

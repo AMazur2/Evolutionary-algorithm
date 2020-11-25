@@ -64,9 +64,8 @@ class EvolutionSimulator:
     def selectPopulation(self, newGenerationCandidats: List[IndividualInterface]) -> List[IndividualInterface]:
         pass
 
-    def applyMutations(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) -> List[
-        IndividualInterface]:
-        newPopulation = self.mutator.mutate(population, offspring)
+    def applyMutations(self, offspring: List[IndividualInterface]) -> List[IndividualInterface]:
+        newPopulation = self.mutator.mutate(offspring)
         return newPopulation
 
     def selectNewGeneration(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) -> List[
