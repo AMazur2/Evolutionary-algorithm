@@ -1,9 +1,9 @@
 from typing import List
 from random import random
-from random import random
 
 from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorInterface import RecombinatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
+
 
 class averageRecombinator(RecombinatorInterface):
 
@@ -13,19 +13,19 @@ class averageRecombinator(RecombinatorInterface):
     def subcross(self, marriage, w):
         temp = []
         for i in range(len(marriage[0])):
-            temp.append(w*os1[0][i]+(1-w)*os2[1][i])
+            temp.append(w*marriage[0][i]+(1-w)*marriage[1][i])
         return temp
 
-    def recombine(self, Marriages: List):
+    def recombine(self, marriages: List):
         childrens = []
-        for i in range(len(Marriages)):
+        for i in range(len(marriages)):
             if random() <= self.probability:
                 j = random()
-                childrens.append(subcross(Marriages[i], j))
+                childrens.append(self.subcross(marriages[i], j))
                 k = random()
-                childrens.append(subcross(Marriages[i], k))
+                childrens.append(self.subcross(marriages[i], k))
             else:
-                childrens.append(Marriages[i][0])
-                childrens.append(Marriages[i][1])
+                childrens.append(marriages[i][0])
+                childrens.append(marriages[i][1])
         return childrens
     

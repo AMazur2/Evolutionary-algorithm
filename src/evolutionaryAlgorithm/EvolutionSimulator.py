@@ -41,9 +41,9 @@ class EvolutionSimulator:
         population = self.initialize_population()
 
         while (not self.endSimulation()):
-            parents = self.selectParents()
+            parents = self.selectParents(population)
             offspring = self.applyRecombinations(parents)
-            offspring = self.applyMutations(offspring, population)
+            mutated = self.applyMutations(offspring, population)
             newGenerationCandidats = self.selectNewGeneration(offspring, population)
             population = self.selectPopulation(newGenerationCandidats)
 
@@ -55,18 +55,19 @@ class EvolutionSimulator:
     def endSimulation(self) -> bool:
         return self.isEndSimulation
 
-    def selectParents(self) -> List[IndividualInterface]:
-        pass
+    def selectParents(self, population: List[IndividualInterface]) -> List[IndividualInterface]:
+        return self.parentSelector.marry(population)
 
     def applyRecombinations(self, parents: List[IndividualInterface]) -> List[IndividualInterface]:
-        pass
+        return self.recombinator.recombine(parents)
 
     def selectPopulation(self, newGenerationCandidats: List[IndividualInterface]) -> List[IndividualInterface]:
         pass
 
     def applyMutations(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) -> List[
         IndividualInterface]:
-        pass
+        newPopulation = self.mutator.mutate(population, offspring)
+        return newPopulation
 
     def selectNewGeneration(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) -> List[
         IndividualInterface]:
