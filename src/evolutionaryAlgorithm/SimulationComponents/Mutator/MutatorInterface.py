@@ -7,5 +7,5 @@ from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterfa
 class MutatorInterface(SimulationComponentInterface):
     
     @abstractmethod
-    def mutate(self, population: List[IndividualInterface], offspring: List[IndividualInterface]):
+    def mutate(self, offspring: List[IndividualInterface]):
         pass
