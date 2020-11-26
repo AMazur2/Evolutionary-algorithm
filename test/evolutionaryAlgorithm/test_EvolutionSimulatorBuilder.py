@@ -27,7 +27,7 @@ def test_create_evolution_simulator_from_dict():
                         "Sigma": 1.0,
                         "Probability" : 0.5
                     }},
-        "ParentSelector": {"Type": "simpleParentSelector"},
+        "ParentSelector": {"Type": "rouletteParentSelector"},
         "SurvivorSelector": {"Type": "simpleSurvivorSelector"}
     }
 

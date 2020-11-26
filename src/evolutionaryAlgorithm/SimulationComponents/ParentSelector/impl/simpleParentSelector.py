@@ -11,7 +11,7 @@ class simpleParentSelector(ParentSelectorInterface):
     def __init__(self):
         pass
     
-    def marry(self, Population: List[IndividualInterface]):
+    def marry(self, Population: List[IndividualInterface], fitness: List[float]):
         marriages = []
         num = int(len(Population)/2)
         for i in range(num):

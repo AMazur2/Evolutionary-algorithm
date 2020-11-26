@@ -39,11 +39,12 @@ class EvolutionSimulator:
 
     def run(self):
         population = self.initialize_population()
+        fitness = self.markPopulation(population)
 
         while (not self.endSimulation()):
-            parents = self.selectParents(population)
+            parents = self.selectParents(population, fitness)
             offspring = self.applyRecombinations(parents)
-            mutated = self.applyMutations(offspring, population)
+            mutated = self.applyMutations(offspring)
             newGenerationCandidats = self.selectNewGeneration(offspring, population)
             population = self.selectPopulation(newGenerationCandidats)
 
@@ -51,6 +52,14 @@ class EvolutionSimulator:
 
     def initialize_population(self) -> List[IndividualInterface]:
         return self.initializator.initialize()
+
+    def markPopulation(self, population: List[IndividualInterface]) -> List[float]:
+        fitness = []
+        for el in population:
+            i = 0
+        #    i = ocena(el)
+            fitness.append(i)
+        return fitness
 
     def endSimulation(self) -> bool:
         return self.isEndSimulation
