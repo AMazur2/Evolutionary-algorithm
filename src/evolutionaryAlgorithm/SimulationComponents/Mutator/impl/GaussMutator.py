@@ -10,17 +10,12 @@ class GaussMutator(MutatorInterface):
 
     def __init__(self, sigma: float, probability: float):
         self.sigma = sigma
-        self.probability = probability
 
     def mutate(self, offspring: List[IndividualInterface]):
         mutated = []
-
         for el in offspring:
             temp = []
             for i in range(len(el)):
-                if random() <= self.probability:
-                    temp.append(el[i]+gauss(0, self.sigma))
-                else:
-                    temp.append(el[i])
-                mutated.append(temp)
+                temp.append(el[i]+gauss(0, self.sigma))
+            mutated.append(temp)
         return mutated
