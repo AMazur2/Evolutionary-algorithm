@@ -11,13 +11,13 @@ class simpleParentSelector(ParentSelectorInterface):
     def __init__(self):
         pass
     
-    def marry(self, Population: List[IndividualInterface], fitness: List[float]):
+    def getParents(self, population: List[IndividualInterface], fitness: List[float]):
         marriages = []
-        num = int(len(Population)/2)
+        num = int(len(population)/2)
         for i in range(num):
             temp = []
             for j in range(2):
-                k = randint(0, len(Population))
-                temp.append(Population[k])
+                k = randint(0, len(population))
+                temp.append(population[k])
             marriages.append(temp)
         return marriages

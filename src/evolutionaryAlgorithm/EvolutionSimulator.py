@@ -64,8 +64,8 @@ class EvolutionSimulator:
     def endSimulation(self) -> bool:
         return self.isEndSimulation
 
-    def selectParents(self, population: List[IndividualInterface]) -> List[IndividualInterface]:
-        return self.parentSelector.marry(population)
+    def selectParents(self, population: List[IndividualInterface], fitness: List[float]) -> List[IndividualInterface]:
+        return self.parentSelector.getParents(population, fitness)
 
     def applyRecombinations(self, parents: List[IndividualInterface]) -> List[IndividualInterface]:
         return self.recombinator.recombine(parents)
