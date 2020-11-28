@@ -4,7 +4,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.Mutator.impl.GaussMutator im
 
 
 def test_mutate():
-    gm = GaussMutator(sigma=1.0)
+    gm = GaussMutator(sigma=1.0, probability=0.1)
     offspring = [FloatingPointIndividual([1, 1]), FloatingPointIndividual([0, 0])]
     mutated = gm.mutate(offspring=offspring)
 

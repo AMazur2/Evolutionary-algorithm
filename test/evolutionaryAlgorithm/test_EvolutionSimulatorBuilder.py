@@ -25,6 +25,7 @@ def test_create_evolution_simulator_from_dict():
         "Mutator": {"Type": "Gauss",
                     "Arguments": {
                         "Sigma": 1.0,
+                        "Probability": 0.1
                     }},
         "ParentSelector": {"Type": "rouletteParentSelector"},
         "SurvivorSelector": {"Type": "simpleSurvivorSelector"}
