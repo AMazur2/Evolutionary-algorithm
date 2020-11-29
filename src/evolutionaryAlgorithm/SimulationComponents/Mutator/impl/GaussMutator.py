@@ -1,27 +1,28 @@
 from typing import List
 from random import gauss
 from random import random
-from abc import abstractmethod
 
-from src.evolutionaryAlgorithm.SimulationComponents.Mutator.MutatorInterface import MutatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
+from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual import \
+    FloatingPointIndividual
+from src.evolutionaryAlgorithm.SimulationComponents.Mutator.MutatorInterface import MutatorInterface
 
 
 class GaussMutator(MutatorInterface):
 
-    def __init__(self, sigma: float, probability: float):
+    def __init__(self, sigma: float, probabilityOfMutation: float):
         self.sigma = sigma
-        self.probability = probability
+        self.probabilityOfMutation = probabilityOfMutation
 
-    @abstractmethod
     def mutate(self, offspring: List[IndividualInterface]):
-        mutated = []
-        for el in offspring:
-            temp = []
-            for i in range(len(el)):
-                if random() <= self.probability:
-                    temp.append(el[i]+gauss(0, self.sigma))
+        mutatedIndividuals = []
+
+        for individual in offspring:
+            newIndividualFeatures = []
+            for feature in individual.getRepresentation():
+                if random() <= self.probabilityOfMutation:
+                    newIndividualFeatures.append(el[i]+gauss(0, self.sigma))
                 else:
-                    temp.append(el[i])
-            mutated.append(temp)
-        return mutated
+                    newIndividualFeatures.append(el[i])
+            mutatedIndividuals.append(temp)
+        return mutatedIndividuals
