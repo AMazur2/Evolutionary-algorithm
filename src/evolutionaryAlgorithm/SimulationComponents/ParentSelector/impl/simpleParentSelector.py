@@ -18,7 +18,7 @@ class simpleParentSelector(ParentSelectorInterface):
         for i in range(num):
             temp = []
             for j in range(2):
-                k = randint(0, len(population))
+                k = randint(0, len(population)-1)
                 temp.append(population[k])
             marriages.append(temp)
         return marriages
