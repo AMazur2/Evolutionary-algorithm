@@ -15,20 +15,20 @@ def test_Recombinator():
 
     for children in childrens:
         for j in range(2):
-            assert children != marriages[0][j].getRepresentation()
+            assert children.getRepresentation() != marriages[0][j].getRepresentation()
 
     recombinator = twoPointRecombinator(1.0)
     childrens = recombinator.recombine(marriages)
 
     for children in childrens:
         for i in range(2):
-            assert children != marriages[0][i].getRepresentation()
+            assert children.getRepresentation() != marriages[0][i].getRepresentation()
 
     recombinator = averageRecombinator(1.0)
     children = recombinator.subcross(marriages[0], 0.5)
-    assert children == [3, 4, 5, 6]
+    assert children.getRepresentation() == [3, 4, 5, 6]
 
     childrens = recombinator.recombine(marriages)
     for children in childrens:
         for i in range(2):
-            assert children != marriages[0][i]
+            assert children.getRepresentation() != marriages[0][i].getRepresentation()

@@ -4,6 +4,8 @@ from random import random
 
 from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorInterface import RecombinatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
+from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual \
+    import FloatingPointIndividual
 
 
 class singlePointRecombinator(RecombinatorInterface):
@@ -30,6 +32,6 @@ class singlePointRecombinator(RecombinatorInterface):
             else:
                 temp1 = el[0]
                 temp2 = el[1]
-            childrens.append(temp1)
-            childrens.append(temp2)
+            childrens.append(FloatingPointIndividual(temp1))
+            childrens.append(FloatingPointIndividual(temp2))
         return childrens
