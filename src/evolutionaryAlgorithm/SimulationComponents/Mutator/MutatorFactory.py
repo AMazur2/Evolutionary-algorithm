@@ -1,3 +1,4 @@
+from src.evolutionaryAlgorithm.SimulationComponents.Initializator.InitializatorInerface import InitializatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentFactoryInterface import \
     SimulationComponentFactoryInterface
 
@@ -9,9 +10,4 @@ class MutatorFactory(SimulationComponentFactoryInterface):
 
     @staticmethod
     def build(config: dict) -> InitializatorInterface:
-        mutator = config["Mutator"]
-        if mutator["Type"] == "Gauss":
-            return GaussMutator(mutator["Arguments"]["Sigma"], mutator["Arguments"]["Probability"])
-
-        else:
-            raise NotImplementedError()
+        pass
