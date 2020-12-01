@@ -3,6 +3,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.impl.averageRec
 from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.impl.signlePointRecombinator import \
     singlePointRecombinator
 from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.impl.twoPointRecombination import twoPointRecombinator
+from src.evolutionaryAlgorithm.SimulationComponents.Initializator.InitializatorInerface import InitializatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentFactoryInterface import \
     SimulationComponentFactoryInterface
 

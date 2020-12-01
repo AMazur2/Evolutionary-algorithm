@@ -1,5 +1,6 @@
 from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector import ParentSelectorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.impl.simpleParentSelector import simpleParentSelector
+from src.evolutionaryAlgorithm.SimulationComponents.Initializator.InitializatorInerface import InitializatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentFactoryInterface import \
     SimulationComponentFactoryInterface
 
@@ -17,3 +18,4 @@ class ParentSelectorFactory(SimulationComponentFactoryInterface):
 
         else:
             raise NotImplementedError()
+
