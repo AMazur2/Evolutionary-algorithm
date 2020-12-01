@@ -10,21 +10,23 @@ class averageRecombinator(RecombinatorInterface):
     def __init__ (self, probability: float):
         self.probability = probability
 
-    def subcross(self, marriage, w):
+    def subcross(self, marriage: List[IndividualInterface], w: float):
         temp = []
-        for i in range(len(marriage[0])):
-            temp.append(w*marriage[0][i]+(1-w)*marriage[1][i])
+        t1 = marriage[0].getRepresentation()
+        t2 = marriage[1].getRepresentation()
+        for i in range(len(t1)):
+            temp.append(w*t1[i]+(1-w)*t2[i])
         return temp
 
-    def recombine(self, marriages: List) -> List[IndividualInterface]:
+    def recombine(self, marriages: List[List[IndividualInterface]]) -> List[IndividualInterface]:
         childrens = []
-        for i in range(len(marriages)):
+        for marriage in marriages:
             if random() <= self.probability:
                 j = random()
-                childrens.append(self.subcross(marriages[i], j))
+                childrens.append(self.subcross(marriage, j))
                 k = random()
-                childrens.append(self.subcross(marriages[i], k))
+                childrens.append(self.subcross(marriage, k))
             else:
-                childrens.append(marriages[i][0])
-                childrens.append(marriages[i][1])
+                childrens.append(marriage[0])
+                childrens.append(marriage[1])
         return childrens

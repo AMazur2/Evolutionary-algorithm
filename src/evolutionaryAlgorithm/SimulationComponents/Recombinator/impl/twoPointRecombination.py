@@ -11,8 +11,8 @@ class twoPointRecombinator(RecombinatorInterface):
     def __init__(self, probability: float):
         self.probability = probability
 
-    def recombine(self, marriages: List) -> List[IndividualInterface]:
-        dim = len(marriages[0][0])-1
+    def recombine(self, marriages: List[List[IndividualInterface]]) -> List[IndividualInterface]:
+        dim = len(marriages[0][0].getRepresentation())-1
         firstPoint = randint(0, dim)
         secondPoint = randint(firstPoint, dim)
         childrens = []
@@ -20,12 +20,14 @@ class twoPointRecombinator(RecombinatorInterface):
             temp1, temp2 = [], []
             if random() <= self.probability:
                 for j in range(dim):
+                    t1 = el[0].getRepresentation()
+                    t2 = el[1].getRepresentation()
                     if j < firstPoint or j >= secondPoint:
-                        temp1.append(el[0][j])
-                        temp2.append(el[1][j])
+                        temp1.append(t1[j])
+                        temp2.append(t2[j])
                     else:
-                        temp1.append(el[1][j])
-                        temp2.append(el[0][j])
+                        temp1.append(t2[j])
+                        temp2.append(t1[j])
             else:
                 temp1 = el[0]
                 temp2 = el[1]
