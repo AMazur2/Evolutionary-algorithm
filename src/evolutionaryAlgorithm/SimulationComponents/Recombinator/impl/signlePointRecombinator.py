@@ -5,13 +5,14 @@ from random import random
 from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorInterface import RecombinatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
 
+
 class singlePointRecombinator(RecombinatorInterface):
-    
-    def __init__ (self, probability: float):
+
+    def __init__(self, probability: float):
         self.probability = probability
 
-    def recombine(self, marriages: List):
-        i = len(marriages[0][0])
+    def recombine(self, marriages: List) -> List[IndividualInterface]:
+        i = len(marriages[0][0])-1
         k = randint(0, i)
         childrens = []
         for el in marriages:

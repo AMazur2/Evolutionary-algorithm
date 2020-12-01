@@ -5,13 +5,14 @@ from random import random
 from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorInterface import RecombinatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
 
+
 class twoPointRecombinator(RecombinatorInterface):
 
-    def __init__ (self, probability: float):
+    def __init__(self, probability: float):
         self.probability = probability
 
-    def recombine(self, marriages: List):
-        dim = len(marriages[0][0])
+    def recombine(self, marriages: List) -> List[IndividualInterface]:
+        dim = len(marriages[0][0])-1
         firstPoint = randint(0, dim)
         secondPoint = randint(firstPoint, dim)
         childrens = []
@@ -29,5 +30,5 @@ class twoPointRecombinator(RecombinatorInterface):
                 temp1 = el[0]
                 temp2 = el[1]
             childrens.append(temp1)
-            childrens.append(temp2)    
+            childrens.append(temp2)
         return childrens

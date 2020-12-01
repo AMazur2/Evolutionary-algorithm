@@ -16,7 +16,7 @@ class averageRecombinator(RecombinatorInterface):
             temp.append(w*marriage[0][i]+(1-w)*marriage[1][i])
         return temp
 
-    def recombine(self, marriages: List):
+    def recombine(self, marriages: List) -> List[IndividualInterface]:
         childrens = []
         for i in range(len(marriages)):
             if random() <= self.probability:
@@ -28,4 +28,3 @@ class averageRecombinator(RecombinatorInterface):
                 childrens.append(marriages[i][0])
                 childrens.append(marriages[i][1])
         return childrens
-    
