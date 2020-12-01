@@ -11,8 +11,8 @@ class rouletteParentSelector(ParentSelectorInterface):
     def __init__(self):
         pass
 
-    def marry(self, Population: List[IndividualInterface], fitness: List[float]):
-        popNum = len(Population)
+    def getParents(self, population: List[IndividualInterface], fitness: List[float]) -> List[IndividualInterface]:
+        popNum = len(population)
         max, min, sum = 0, fitness[0], 0
         for i in range(popNum):
             sum += fitness[i]
@@ -33,7 +33,7 @@ class rouletteParentSelector(ParentSelectorInterface):
             parents = []
             for j in range(2):
                 k = self.chooseOne(fitnessPrim, sum)
-                parents.append(Population[k])
+                parents.append(population[k])
             marriages.append(parents)
         return marriages
 
