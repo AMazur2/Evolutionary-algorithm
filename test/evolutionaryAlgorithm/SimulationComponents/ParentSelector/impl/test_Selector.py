@@ -1,5 +1,7 @@
 from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.impl.rouletteParentSelector import \
     rouletteParentSelector
+from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.impl.simpleParentSelector import \
+    simpleParentSelector
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual import \
     FloatingPointIndividual
 
@@ -13,6 +15,13 @@ def test_select():
 
     assert chosen < len(fitness)
 
+    marriages = selector.getParents(population, fitness)
+
+    for el in marriages:
+        for individual in el:
+            assert individual in population
+
+    selector = simpleParentSelector()
     marriages = selector.getParents(population, fitness)
 
     for el in marriages:
