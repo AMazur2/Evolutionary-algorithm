@@ -23,8 +23,12 @@ class simpleMarriage(MarriageInterface):
             temp = []
             for j in range(2):
                 k = randint(0, len(temporaryPopulation) - 1)
-                print(temporaryPopulation[k])
                 temp.append(FloatingPointIndividual(temporaryPopulation[k]))
                 del (temporaryPopulation[k])
+            value1 = temp[0].getFitnessFunctionEvaluation()
+            value2 = temp[1].getFitnessFunctionEvaluation()
+            value = min(value1, value2)
+            for k in range(2):
+                temp[k].setFitnessFunctionEvaluation(value)
             marriages.append(temp)
         return marriages
