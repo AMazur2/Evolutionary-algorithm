@@ -20,9 +20,10 @@ class singlePointRecombinator(RecombinatorInterface):
         for el in marriages:
             temp1, temp2 = [], []
             if random() <= self.probability:
-                for j in range(i):
-                    t1 = el[0].getRepresentation()
-                    t2 = el[1].getRepresentation()
+                t1 = el[0].getRepresentation()
+                t2 = el[1].getRepresentation()
+                print(k)
+                for j in range(i+1):
                     if j < k:
                         temp1.append(t1[j])
                         temp2.append(t2[j])
@@ -30,8 +31,8 @@ class singlePointRecombinator(RecombinatorInterface):
                         temp1.append(t2[j])
                         temp2.append(t1[j])
             else:
-                temp1 = el[0]
-                temp2 = el[1]
+                temp1 = el[0].getRepresentation()
+                temp2 = el[1].getRepresentation()
             childrens.append(FloatingPointIndividual(temp1))
             childrens.append(FloatingPointIndividual(temp2))
         return childrens

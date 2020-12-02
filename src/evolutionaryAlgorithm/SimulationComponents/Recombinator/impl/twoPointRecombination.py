@@ -21,7 +21,7 @@ class twoPointRecombinator(RecombinatorInterface):
         for el in marriages:
             temp1, temp2 = [], []
             if random() <= self.probability:
-                for j in range(dim):
+                for j in range(dim+1):
                     t1 = el[0].getRepresentation()
                     t2 = el[1].getRepresentation()
                     if j < firstPoint or j >= secondPoint:

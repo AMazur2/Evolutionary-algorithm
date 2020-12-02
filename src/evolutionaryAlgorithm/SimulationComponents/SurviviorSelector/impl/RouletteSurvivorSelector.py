@@ -26,21 +26,29 @@ class RouletteSurvivorSelector(SurviviorSelectorInterface):
 
         param = max - min
         fitnessPrim = []
+        sum = 0
         for i in range(number):  # q' = (q-min(q))*(max(q)-min(q))
             a = fitness[i] - min
             b = a * param  # q" = 1-q'
-            fitnessPrim.append(1 - b)
+            c = (2 - b) / 2
+            if (c < 0):
+                c = 0
+            fitnessPrim.append(c)
+            sum = sum + c
 
         survivors = []
         for i in range(int(number / 2)):
-            k = self.chooseOne(fitnessPrim, sum)
-            survivors.append(population[k])
+            k = self.chooseOne(population,fitnessPrim, sum)
+            survivors.append(k)
         return survivors
 
-    def chooseOne(self, fitness: List[float], maximum: float) -> int:
+    def chooseOne(self, population: List[IndividualInterface], fitness: List[float], maximum: float) -> \
+            IndividualInterface:
         pick = uniform(0, maximum)
         current = 0
-        for i in range(len(fitness)):
+        i = 0
+        for individual in population:
             current += fitness[i]
             if current > pick:
-                return i
+                return individual
+            i = i + 1

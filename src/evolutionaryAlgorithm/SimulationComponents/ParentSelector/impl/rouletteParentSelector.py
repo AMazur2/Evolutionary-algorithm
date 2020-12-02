@@ -4,6 +4,8 @@ from random import uniform
 from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.ParentSelectorInterface \
     import ParentSelectorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
+from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual import \
+    FloatingPointIndividual
 
 
 class rouletteParentSelector(ParentSelectorInterface):
@@ -26,6 +28,7 @@ class rouletteParentSelector(ParentSelectorInterface):
 
         param = max - min
         fitnessPrim = []
+        sum = 0
         for i in range(popNum):         #q' = (q-min(q))*(max(q)-min(q))
             a = fitness[i]-min
             b = a*param                 #q" = 1-q'
@@ -33,6 +36,7 @@ class rouletteParentSelector(ParentSelectorInterface):
             if(c < 0):
                 c = 0
             fitnessPrim.append(c)
+            sum = sum + c
 
         marriages = []
         for i in range(int(popNum/2)):
@@ -53,4 +57,3 @@ class rouletteParentSelector(ParentSelectorInterface):
             if current > pick:
                 return individual
             i = i+1
-

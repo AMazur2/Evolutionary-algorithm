@@ -7,7 +7,7 @@ def test_create_evolution_simulator_from_dict():
         "Initializator": {
             "Type": "Random",
             "Arguments": {
-                "PopulationSize": 50
+                "PopulationSize": 10
             }},
         "IndividualRepresentation": {"Type": "FloatingPointRepresentation",
                                      "Arguments": {

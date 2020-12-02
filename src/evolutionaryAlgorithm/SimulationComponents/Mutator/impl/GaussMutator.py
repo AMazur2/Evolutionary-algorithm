@@ -24,6 +24,6 @@ class GaussMutator(MutatorInterface):
                 if random() <= self.probabilityOfMutation:
                     newIndividualFeatures.append(temp[i]+gauss(0, self.sigma))
                 else:
-                    newIndividualFeatures.append(temp)
+                    newIndividualFeatures.append(temp[i])
             mutatedIndividuals.append(FloatingPointIndividual(newIndividualFeatures))
         return mutatedIndividuals
