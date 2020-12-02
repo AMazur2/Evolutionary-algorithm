@@ -29,21 +29,28 @@ class rouletteParentSelector(ParentSelectorInterface):
         for i in range(popNum):         #q' = (q-min(q))*(max(q)-min(q))
             a = fitness[i]-min
             b = a*param                 #q" = 1-q'
-            fitnessPrim.append(1-b)
+            c = (2-b)/2
+            if(c < 0):
+                c = 0
+            fitnessPrim.append(c)
 
         marriages = []
         for i in range(int(popNum/2)):
             parents = []
             for j in range(2):
-                k = self.chooseOne(fitnessPrim, sum)
-                parents.append(population[k])
+                temp = self.chooseOne(population, fitnessPrim, sum)
+                parents.append(temp)
             marriages.append(parents)
         return marriages
 
-    def chooseOne(self, fitness: List[float], maximum: float):
+    def chooseOne(self, population: List[IndividualInterface], fitness: List[float], maximum: float) -> \
+            IndividualInterface:
         pick = uniform(0, maximum)
         current = 0
-        for i in range(len(fitness)):
+        i = 0
+        for individual in population:
             current += fitness[i]
             if current > pick:
-                return i
+                return individual
+            i = i+1
+

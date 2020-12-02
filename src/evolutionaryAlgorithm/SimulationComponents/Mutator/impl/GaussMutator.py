@@ -19,10 +19,11 @@ class GaussMutator(MutatorInterface):
 
         for individual in offspring:
             newIndividualFeatures = []
-            for feature in individual.getRepresentation():
+            temp = individual.getRepresentation()
+            for i in range(len(temp)):
                 if random() <= self.probabilityOfMutation:
-                    newIndividualFeatures.append(feature+gauss(0, self.sigma))
+                    newIndividualFeatures.append(temp[i]+gauss(0, self.sigma))
                 else:
-                    newIndividualFeatures.append(feature)
+                    newIndividualFeatures.append(temp)
             mutatedIndividuals.append(FloatingPointIndividual(newIndividualFeatures))
         return mutatedIndividuals

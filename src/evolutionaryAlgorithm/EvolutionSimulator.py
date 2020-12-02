@@ -67,10 +67,10 @@ class EvolutionSimulator:
     def endSimulation(self) -> bool:
         return self.isEndSimulation
 
-    def selectParents(self, population: List[IndividualInterface]) -> List[IndividualInterface]:
+    def selectParents(self, population: List[IndividualInterface]) -> List[List[IndividualInterface]]:
         return self.parentSelector.getParents(population)
 
-    def applyRecombinations(self, parents: List[IndividualInterface]) -> List[IndividualInterface]:
+    def applyRecombinations(self, parents: List[List[IndividualInterface]]) -> List[IndividualInterface]:
         return self.recombinator.recombine(parents)
 
     def applyMutations(self, offspring: List[IndividualInterface]) -> List[IndividualInterface]:
