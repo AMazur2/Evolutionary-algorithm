@@ -7,5 +7,5 @@ from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentInterface
 class ParentSelectorInterface(SimulationComponentInterface):
     
     @abstractmethod
-    def getParents(self, population: List[IndividualInterface], fitness: List[float]):
+    def getParents(self, population: List[IndividualInterface]):
         pass

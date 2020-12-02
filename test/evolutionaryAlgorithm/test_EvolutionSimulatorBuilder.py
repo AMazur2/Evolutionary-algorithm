@@ -17,7 +17,7 @@ def test_create_evolution_simulator_from_dict():
                                              "Max": 10
                                          }
                                      }},
-        "FitnessFunction": {"Type": "Simple"},
+        "FitnessFunction": {"Type": "weierstrass"},
         "Recombinator": {"Type": "singlePointRecombinator",
                          "Arguments": {
                              "Probability": 0.85
@@ -28,7 +28,7 @@ def test_create_evolution_simulator_from_dict():
                         "Probability": 0.1
                     }},
         "ParentSelector": {"Type": "rouletteParentSelector"},
-        "SurvivorSelector": {"Type": "simpleSurvivorSelector"}
+        "SurvivorSelector": {"Type": "rouletteSurvivorSelector"}
     }
 
     evolutionSimulator = EvolutionSimulatorBuilder.createEvolutionSimulatorFromDict(config)

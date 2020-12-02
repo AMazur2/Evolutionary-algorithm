@@ -11,18 +11,23 @@ def test_select():
     fitness = [0.2, 0.4, 0.5, 0.9]
     population = [FloatingPointIndividual([1, 1, 1]), FloatingPointIndividual([2, 2, 2]),
                   FloatingPointIndividual([3, 3, 3]), FloatingPointIndividual([4, 4, 4])]
+    i = 0
+    for el in population:
+        el.setFitnessFunctionEvaluation(fitness[i])
+        i = i + 1
+
     chosen = selector.chooseOne(fitness, 2.0)
 
     assert chosen < len(fitness)
 
-    marriages = selector.getParents(population, fitness)
+    marriages = selector.getParents(population)
 
     for el in marriages:
         for individual in el:
             assert individual in population
 
     selector = simpleParentSelector()
-    marriages = selector.getParents(population, fitness)
+    marriages = selector.getParents(population)
 
     for el in marriages:
         for individual in el:

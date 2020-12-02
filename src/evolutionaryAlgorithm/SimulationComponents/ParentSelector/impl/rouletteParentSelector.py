@@ -11,8 +11,11 @@ class rouletteParentSelector(ParentSelectorInterface):
     def __init__(self):
         pass
 
-    def getParents(self, population: List[IndividualInterface], fitness: List[float]) -> List[IndividualInterface]:
+    def getParents(self, population: List[IndividualInterface]) -> List[List[IndividualInterface]]:
         popNum = len(population)
+        fitness = []
+        for el in population:
+            fitness.append(el.getFitnessFunctionEvaluation())
         max, min, sum = 0, fitness[0], 0
         for i in range(popNum):
             sum += fitness[i]
