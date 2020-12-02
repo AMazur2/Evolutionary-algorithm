@@ -13,8 +13,8 @@ from src.evolutionaryAlgorithm.SimulationComponents.Marriage.MarriageInterface i
 
 
 class EvolutionSimulator:
-    initializator = InitializatorInterface
-    recombinator = RecombinatorInterface
+    initializator: InitializatorInterface
+    recombinator: RecombinatorInterface
     mutator: MutatorInterface
     parentSelector: ParentSelectorInterface
     survivorSelector: SurviviorSelectorInterface
@@ -58,8 +58,8 @@ class EvolutionSimulator:
             mutated = self.applyMutations(offspring)
             self.markPopulation(mutated)
             newMarriages = self.marry(mutated)
-            #self.markPopulation(mutated)
-            population = self.selectNewGeneration(mutated, population)
+            # self.markPopulation(mutated)
+            marriages = self.selectNewGeneration(marriages, newMarriages)
 
             self.isEndSimulation = True  # TODO Remove me
 
@@ -85,11 +85,6 @@ class EvolutionSimulator:
         newPopulation = self.mutator.mutate(offspring)
         return newPopulation
 
-    def selectNewGeneration(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) \
-            -> List[IndividualInterface]:
-        temporary = []
-        for el in offspring:
-            temporary.append(el)
-        for el in population:
-            temporary.append(el)
+    def selectNewGeneration(self, population: List[List[IndividualInterface]],
+                            offspring: List[List[IndividualInterface]]) -> List[IndividualInterface]:
         return self.survivorSelector.selectSurvivor(offspring, population)

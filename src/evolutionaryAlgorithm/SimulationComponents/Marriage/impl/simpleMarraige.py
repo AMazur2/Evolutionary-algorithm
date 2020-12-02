@@ -23,6 +23,7 @@ class simpleMarriage(MarriageInterface):
             temp = []
             for j in range(2):
                 k = randint(0, len(temporaryPopulation) - 1)
+                print(temporaryPopulation[k])
                 temp.append(FloatingPointIndividual(temporaryPopulation[k]))
                 del (temporaryPopulation[k])
             marriages.append(temp)

@@ -12,15 +12,15 @@ class eliteSurvivor(SurviviorSelectorInterface):
     def __init__(self):
         pass
 
-    def selectSurvivor(self, population: List[IndividualInterface], offspring: List[IndividualInterface]) -> \
-            List[IndividualInterface]:
+    def selectSurvivor(self, population: List[List[IndividualInterface]],
+                       offspring: List[List[IndividualInterface]]) -> List[List[IndividualInterface]]:
 
-        t = len(population)/2
+        t = len(population) / 2
         newGeneration = []
 
         fitness = []
         for el in population:
-            fitness.append(el.getFitnessFunctionEvaluation())
+            fitness.append(el[0].getFitnessFunctionEvaluation())
 
         for i in range(int(t)):
             k = fitness[0]
@@ -29,13 +29,15 @@ class eliteSurvivor(SurviviorSelectorInterface):
                 if k > fitness[j]:
                     k = fitness[j]
                     index = j
-            del(fitness[index])
-            newGeneration.append(FloatingPointIndividual(population[index].getRepresentation()))
-            del(population[index])
+            del (fitness[index])
+            temp = [FloatingPointIndividual(population[index][0].getRepresentation()),
+                    FloatingPointIndividual(population[index][1].getRepresentation())]
+            newGeneration.append(temp)
+            del (population[index])
 
         fitness = []
         for el in offspring:
-            fitness.append(el.getFitnessFunctionEvaluation())
+            fitness.append(el[0].getFitnessFunctionEvaluation())
 
         for i in range(int(t)):
             k = fitness[0]
@@ -44,8 +46,10 @@ class eliteSurvivor(SurviviorSelectorInterface):
                 if k > fitness[j]:
                     k = fitness[j]
                     index = k
-            del(fitness[index])
-            newGeneration.append((FloatingPointIndividual(offspring[index].getRepresentation())))
-            del(offspring[index])
+            del (fitness[index])
+            temp = [FloatingPointIndividual(offspring[index][0].getRepresentation()),
+                    FloatingPointIndividual(offspring[index][1].getRepresentation())]
+            newGeneration.append(temp)
+            del (offspring[index])
 
         return newGeneration

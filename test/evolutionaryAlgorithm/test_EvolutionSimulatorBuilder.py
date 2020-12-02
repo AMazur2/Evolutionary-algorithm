@@ -28,7 +28,7 @@ def test_create_evolution_simulator_from_dict():
                         "Probability": 0.1
                     }},
         "ParentSelector": {"Type": "rouletteParentSelector"},
-        "SurvivorSelector": {"Type": "eliteSurvivors"},
+        "SurvivorSelector": {"Type": "eliteSurvivor"},
         "Marriage": {"Type": "simpleMarriage"}
     }
 

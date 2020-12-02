@@ -7,5 +7,6 @@ from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterfa
 class SurviviorSelectorInterface(SimulationComponentInterface):
 
     @abstractmethod
-    def selectSurvivor(self, population: List[IndividualInterface], offspring: List[IndividualInterface]):
+    def selectSurvivor(self, population: List[List[IndividualInterface]],
+                       offspring: List[List[IndividualInterface]]):
         pass
