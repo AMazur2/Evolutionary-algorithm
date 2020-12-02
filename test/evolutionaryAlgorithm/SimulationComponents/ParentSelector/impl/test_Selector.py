@@ -16,9 +16,9 @@ def test_select():
         el.setFitnessFunctionEvaluation(fitness[i])
         i = i + 1
 
-    chosen = selector.chooseOne(fitness, 2.0)
+    chosen = selector.chooseOne(population, fitness, 2.0)
 
-    assert chosen < len(fitness)
+    assert chosen in population
 
     marriages = selector.getParents(population)
 
