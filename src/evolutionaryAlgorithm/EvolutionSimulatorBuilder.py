@@ -12,6 +12,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.SurviviorS
     SurviviorSelectorFactory
 from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.FitnessFunctionFactory import \
     FitnessFunctionFactory
+from src.evolutionaryAlgorithm.SimulationComponents.Marriage.MarriageFactory import MarriageFactory
 
 class EvolutionSimulatorBuilder:
     # implementedComponents = {
@@ -32,7 +33,8 @@ class EvolutionSimulatorBuilder:
         "Mutator": MutatorFactory,
         "ParentSelector": ParentSelectorFactory,
         "SurvivorSelector": SurviviorSelectorFactory,
-        "FitnessFunction": FitnessFunctionFactory
+        "FitnessFunction": FitnessFunctionFactory,
+        "Marriage": MarriageFactory
     }
 
     @classmethod

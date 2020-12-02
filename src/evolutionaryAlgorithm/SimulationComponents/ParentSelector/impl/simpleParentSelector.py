@@ -1,5 +1,4 @@
 from typing import List
-from random import randint
 
 from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.ParentSelectorInterface \
     import ParentSelectorInterface
@@ -13,18 +12,12 @@ class simpleParentSelector(ParentSelectorInterface):
     def __init__(self):
         pass
     
-    def getParents(self, population: List[IndividualInterface]) -> List[List[IndividualInterface]]:
-        marriages = []
+    def getParents(self, population: List[List[IndividualInterface]]) -> List[List[IndividualInterface]]:
         temporaryPopulation = []
-        for i in range(len(population)):
-            temporaryPopulation.append(population[i].getRepresentation())
+        for el in population:
+            marriage = []
+            marriage.append(FloatingPointIndividual(el[0].getRepresentation()))
+            marriage.append(FloatingPointIndividual(el[1].getRepresentation()))
+            temporaryPopulation.append(marriage)
 
-        num = int(len(temporaryPopulation)/2)
-        for i in range(num):
-            temp = []
-            for j in range(2):
-                k = randint(0, len(temporaryPopulation)-1)
-                temp.append(FloatingPointIndividual(temporaryPopulation[k]))
-                del(temporaryPopulation[k])
-            marriages.append(temp)
-        return marriages
+        return temporaryPopulation

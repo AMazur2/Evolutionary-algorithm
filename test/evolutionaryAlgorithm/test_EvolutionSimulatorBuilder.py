@@ -28,7 +28,8 @@ def test_create_evolution_simulator_from_dict():
                         "Probability": 0.1
                     }},
         "ParentSelector": {"Type": "rouletteParentSelector"},
-        "SurvivorSelector": {"Type": "rouletteSurvivorSelector"}
+        "SurvivorSelector": {"Type": "rouletteSurvivorSelector"},
+        "Marriage": {"Type": "simpleMarriage"}
     }
 
     evolutionSimulator = EvolutionSimulatorBuilder.createEvolutionSimulatorFromDict(config)

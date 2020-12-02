@@ -13,11 +13,12 @@ class rouletteParentSelector(ParentSelectorInterface):
     def __init__(self):
         pass
 
-    def getParents(self, population: List[IndividualInterface]) -> List[List[IndividualInterface]]:
+    def getParents(self, population: List[List[IndividualInterface]]) -> List[List[IndividualInterface]]:
         popNum = len(population)
+        print(popNum)
         fitness = []
         for el in population:
-            fitness.append(el.getFitnessFunctionEvaluation())
+            fitness.append(el[0].getFitnessFunctionEvaluation())
         max, min, sum = 0, fitness[0], 0
         for i in range(popNum):
             sum += fitness[i]
@@ -39,21 +40,18 @@ class rouletteParentSelector(ParentSelectorInterface):
             sum = sum + c
 
         marriages = []
-        for i in range(int(popNum/2)):
-            parents = []
-            for j in range(2):
-                temp = self.chooseOne(population, fitnessPrim, sum)
-                parents.append(temp)
-            marriages.append(parents)
+        for i in range(int(popNum)):
+            temp = []
+            k = self.chooseOne(fitnessPrim, sum)
+            temp.append(FloatingPointIndividual(population[k][0].getRepresentation()))
+            temp.append(FloatingPointIndividual(population[k][1].getRepresentation()))
+            marriages.append(temp)
         return marriages
 
-    def chooseOne(self, population: List[IndividualInterface], fitness: List[float], maximum: float) -> \
-            IndividualInterface:
+    def chooseOne(self, fitness: List[float], maximum: float) -> int:
         pick = uniform(0, maximum)
         current = 0
-        i = 0
-        for individual in population:
+        for i in range(len(fitness)):
             current += fitness[i]
             if current > pick:
-                return individual
-            i = i+1
+                return i

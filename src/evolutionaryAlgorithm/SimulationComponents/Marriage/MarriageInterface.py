@@ -4,8 +4,8 @@ from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterfa
 from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentInterface import SimulationComponentInterface
 
 
-class ParentSelectorInterface(SimulationComponentInterface):
-    
+class MarriageInterface(SimulationComponentInterface):
+
     @abstractmethod
-    def getParents(self, population: List[List[IndividualInterface]]):
+    def marry(self, population: List[IndividualInterface]):
         pass

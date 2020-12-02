@@ -9,6 +9,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.ParentSelecto
 from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorInterface import RecombinatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.SurviviorSelectorInterface import \
     SurviviorSelectorInterface
+from src.evolutionaryAlgorithm.SimulationComponents.Marriage.MarriageInterface import MarriageInterface
 
 
 class EvolutionSimulator:
@@ -19,8 +20,11 @@ class EvolutionSimulator:
     survivorSelector: SurviviorSelectorInterface
     fitnessFunction: FitnessFunctionInterface
     population: List[IndividualInterface]
+    marriageSelector: MarriageInterface
+    marriage: List[List[IndividualInterface]]
 
-    def __init__(self, initializator, recombinator, mutator, parentSelector, survivorSelector, fitnessFunction):
+    def __init__(self, initializator, recombinator, mutator, parentSelector, survivorSelector, fitnessFunction,
+                 marriageSelector):
         self.isEndSimulation = False
         self.initializator = initializator
         self.recombinator = recombinator
@@ -28,6 +32,7 @@ class EvolutionSimulator:
         self.parentSelector = parentSelector
         self.survivorSelector = survivorSelector
         self.fitnessFunction = fitnessFunction
+        self.marriageSelector = marriageSelector
 
     @staticmethod
     def fromSimulationComponentList(SimulationComponents):
@@ -37,19 +42,22 @@ class EvolutionSimulator:
         parentSelector = SimulationComponents["ParentSelector"]
         survivorSelector = SimulationComponents["SurvivorSelector"]
         fitnessFunction = SimulationComponents["FitnessFunction"]
+        marriageSelector = SimulationComponents["Marriage"]
 
         return EvolutionSimulator(initializator, recombinator, mutator, parentSelector, survivorSelector,
-                                  fitnessFunction)
+                                  fitnessFunction, marriageSelector)
 
     def run(self):
         population = self.initialize_population()
         self.markPopulation(population)
-        # marriages = self.marry(population)
+        marriages = self.marry(population)
 
         while (not self.endSimulation()):
-            parents = self.selectParents(population)
+            parents = self.selectParents(marriages)
             offspring = self.applyRecombinations(parents)
             mutated = self.applyMutations(offspring)
+            newMarriages = self.marry(mutated)
+            # self.markPopulation(newMarriages)
             self.markPopulation(mutated)
             population = self.selectNewGeneration(mutated, population)
 
@@ -59,7 +67,7 @@ class EvolutionSimulator:
         return self.initializator.initialize()
 
     def marry(self, population: List[IndividualInterface]) -> List[List[IndividualInterface]]:
-        pass
+        return self.marriageSelector.marry(population)
 
     def markPopulation(self, population: List[IndividualInterface]):
         self.fitnessFunction.evaluate(population)
@@ -67,7 +75,7 @@ class EvolutionSimulator:
     def endSimulation(self) -> bool:
         return self.isEndSimulation
 
-    def selectParents(self, population: List[IndividualInterface]) -> List[List[IndividualInterface]]:
+    def selectParents(self, population: List[List[IndividualInterface]]) -> List[List[IndividualInterface]]:
         return self.parentSelector.getParents(population)
 
     def applyRecombinations(self, parents: List[List[IndividualInterface]]) -> List[IndividualInterface]:
@@ -77,8 +85,8 @@ class EvolutionSimulator:
         newPopulation = self.mutator.mutate(offspring)
         return newPopulation
 
-    def selectNewGeneration(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) -> List[
-        IndividualInterface]:
+    def selectNewGeneration(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) \
+            -> List[IndividualInterface]:
         temporary = []
         for el in offspring:
             temporary.append(el)
