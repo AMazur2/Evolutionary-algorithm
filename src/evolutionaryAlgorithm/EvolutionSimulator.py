@@ -12,8 +12,8 @@ from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.SurviviorS
 
 
 class EvolutionSimulator:
-    initializator = InitializatorInterface
-    recombinator = RecombinatorInterface
+    initializator : InitializatorInterface
+    recombinator : RecombinatorInterface
     mutator: MutatorInterface
     parentSelector: ParentSelectorInterface
     survivorSelector: SurviviorSelectorInterface
