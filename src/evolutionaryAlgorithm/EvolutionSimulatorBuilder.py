@@ -30,7 +30,8 @@ class EvolutionSimulatorBuilder:
         "Recombinator": RecombinatorFactory,
         "Mutator": MutatorFactory,
         "ParentSelector": ParentSelectorFactory,
-        "SurvivorSelector": SurviviorSelectorFactory
+        "SurvivorSelector": SurviviorSelectorFactory,
+        "FitnessFunction": FitnessFunctionInterface
     }
 
     @classmethod

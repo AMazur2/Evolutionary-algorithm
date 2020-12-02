@@ -7,7 +7,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.impl.Roule
 class SurviviorSelectorFactory(SimulationComponentFactoryInterface):
 
     @staticmethod
-    def build(config: dict):  # TODO: implement me
+    def build(config: dict):
         parentSelector = config["SurvivorSelector"]
         if parentSelector["Type"] == "RouletteSurvivorSelector":
             return RouletteSurvivorSelector

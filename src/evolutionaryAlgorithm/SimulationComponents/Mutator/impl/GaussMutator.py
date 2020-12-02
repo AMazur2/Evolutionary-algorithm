@@ -24,5 +24,5 @@ class GaussMutator(MutatorInterface):
                     newIndividualFeatures.append(feature+gauss(0, self.sigma))
                 else:
                     newIndividualFeatures.append(feature)
-            mutatedIndividuals.append(newIndividualFeatures)
+            mutatedIndividuals.append(FloatingPointIndividual(newIndividualFeatures))
         return mutatedIndividuals
