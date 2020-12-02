@@ -22,7 +22,6 @@ class singlePointRecombinator(RecombinatorInterface):
             if random() <= self.probability:
                 t1 = el[0].getRepresentation()
                 t2 = el[1].getRepresentation()
-                print(k)
                 for j in range(i+1):
                     if j < k:
                         temp1.append(t1[j])
