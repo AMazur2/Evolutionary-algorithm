@@ -56,9 +56,9 @@ class EvolutionSimulator:
             parents = self.selectParents(marriages)
             offspring = self.applyRecombinations(parents)
             mutated = self.applyMutations(offspring)
-            newMarriages = self.marry(mutated)
-            # self.markPopulation(newMarriages)
             self.markPopulation(mutated)
+            newMarriages = self.marry(mutated)
+            #self.markPopulation(mutated)
             population = self.selectNewGeneration(mutated, population)
 
             self.isEndSimulation = True  # TODO Remove me
@@ -92,4 +92,4 @@ class EvolutionSimulator:
             temporary.append(el)
         for el in population:
             temporary.append(el)
-        return self.survivorSelector.selectSurvivor(temporary)
+        return self.survivorSelector.selectSurvivor(offspring, population)

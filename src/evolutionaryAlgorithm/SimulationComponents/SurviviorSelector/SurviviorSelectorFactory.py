@@ -1,7 +1,7 @@
 from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentFactoryInterface import \
     SimulationComponentFactoryInterface
-from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.impl.RouletteSurvivorSelector import \
-    RouletteSurvivorSelector
+from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.impl.eliteSurvivors import \
+    eliteSurvivor
 
 
 class SurviviorSelectorFactory(SimulationComponentFactoryInterface):
@@ -9,8 +9,8 @@ class SurviviorSelectorFactory(SimulationComponentFactoryInterface):
     @staticmethod
     def build(config: dict):
         parentSelector = config["SurvivorSelector"]
-        if parentSelector["Type"] == "rouletteSurvivorSelector":
-            return RouletteSurvivorSelector()
+        if parentSelector["Type"] == "eliteSurvivor":
+            return eliteSurvivor()
         else:
             raise NotImplementedError()
 
