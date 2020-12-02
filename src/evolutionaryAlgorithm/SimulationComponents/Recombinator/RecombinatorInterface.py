@@ -6,5 +6,5 @@ from abc import abstractmethod
 
 class RecombinatorInterface(SimulationComponentInterface):
     @abstractmethod
-    def recombine(self, population: List[IndividualInterface]):
+    def recombine(self, population: List[List[IndividualInterface]]):
         pass

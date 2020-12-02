@@ -2,25 +2,28 @@ from typing import List
 from random import gauss
 from random import random
 
-from src.evolutionaryAlgorithm.SimulationComponents.Mutator.MutatorInterface import MutatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
+from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual import \
+    FloatingPointIndividual
+from src.evolutionaryAlgorithm.SimulationComponents.Mutator.MutatorInterface import MutatorInterface
 
 
 class GaussMutator(MutatorInterface):
 
-    def __init__(self, sigma: float, probability: float):
+    def __init__(self, sigma: float, probabilityOfMutation: float):
         self.sigma = sigma
-        self.probability = probability
+        self.probabilityOfMutation = probabilityOfMutation
 
-    def mutate(self, offspring: List[IndividualInterface]):
-        mutated = []
+    def mutate(self, offspring: List[IndividualInterface]) -> List[IndividualInterface]:
+        mutatedIndividuals = []
 
-        for el in offspring:
-            temp = []
-            for i in range(len(el)):
-                if random() <= self.probability:
-                    temp.append(el[i]+gauss(0, self.sigma))
+        for individual in offspring:
+            newIndividualFeatures = []
+            temp = individual.getRepresentation()
+            for i in range(len(temp)):
+                if random() <= self.probabilityOfMutation:
+                    newIndividualFeatures.append(temp[i]+gauss(0, self.sigma))
                 else:
-                    temp.append(el[i])
-                mutated.append(temp)
-        return mutated
+                    newIndividualFeatures.append(temp[i])
+            mutatedIndividuals.append(FloatingPointIndividual(newIndividualFeatures))
+        return mutatedIndividuals

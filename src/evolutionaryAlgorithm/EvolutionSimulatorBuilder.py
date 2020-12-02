@@ -10,7 +10,8 @@ from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentFactoryIn
 from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentInterface import SimulationComponentInterface
 from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.SurviviorSelectorFactory import \
     SurviviorSelectorFactory
-
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.FitnessFunctionFactory import \
+    FitnessFunctionFactory
 
 class EvolutionSimulatorBuilder:
     # implementedComponents = {
@@ -30,7 +31,8 @@ class EvolutionSimulatorBuilder:
         "Recombinator": RecombinatorFactory,
         "Mutator": MutatorFactory,
         "ParentSelector": ParentSelectorFactory,
-        "SurvivorSelector": SurviviorSelectorFactory
+        "SurvivorSelector": SurviviorSelectorFactory,
+        "FitnessFunction": FitnessFunctionFactory
     }
 
     @classmethod

@@ -7,7 +7,7 @@ def test_create_evolution_simulator_from_dict():
         "Initializator": {
             "Type": "Random",
             "Arguments": {
-                "PopulationSize": 50
+                "PopulationSize": 10
             }},
         "IndividualRepresentation": {"Type": "FloatingPointRepresentation",
                                      "Arguments": {
@@ -17,18 +17,18 @@ def test_create_evolution_simulator_from_dict():
                                              "Max": 10
                                          }
                                      }},
-        "FitnessFunction": {"Type": "Simple"},
+        "FitnessFunction": {"Type": "weierstrass"},
         "Recombinator": {"Type": "singlePointRecombinator",
-                        "Arguments" : {
-                            "Probability" : 0.85
-                        }},
+                         "Arguments": {
+                             "Probability": 0.85
+                         }},
         "Mutator": {"Type": "Gauss",
                     "Arguments": {
                         "Sigma": 1.0,
-                        "Probability" : 0.5
+                        "Probability": 0.1
                     }},
-        "ParentSelector": {"Type": "simpleParentSelector"},
-        "SurvivorSelector": {"Type": "simpleSurvivorSelector"}
+        "ParentSelector": {"Type": "rouletteParentSelector"},
+        "SurvivorSelector": {"Type": "rouletteSurvivorSelector"}
     }
 
     evolutionSimulator = EvolutionSimulatorBuilder.createEvolutionSimulatorFromDict(config)
