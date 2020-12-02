@@ -9,8 +9,8 @@ class SurviviorSelectorFactory(SimulationComponentFactoryInterface):
     @staticmethod
     def build(config: dict):
         parentSelector = config["SurvivorSelector"]
-        if parentSelector["Type"] == "RouletteSurvivorSelector":
-            return RouletteSurvivorSelector
+        if parentSelector["Type"] == "rouletteSurvivorSelector":
+            return RouletteSurvivorSelector()
         else:
             raise NotImplementedError()
 
