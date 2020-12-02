@@ -15,5 +15,5 @@ def test_evaluate():
     temp = y[0].getFitnessFunctionEvaluation()
     evaluation = expandedSchaffers()
     evaluation.evaluate(y)
-    print(y[0].getFitnessFunctionEvaluation())
+
     assert temp != y[0].getFitnessFunctionEvaluation()

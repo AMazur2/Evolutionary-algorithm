@@ -5,7 +5,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentFactoryIn
     SimulationComponentFactoryInterface
 
 
-class MutatorFactory(SimulationComponentFactoryInterface):
+class FitnessFunctionFactory(SimulationComponentFactoryInterface):
     @staticmethod
     def validate(config: dict):
         pass
