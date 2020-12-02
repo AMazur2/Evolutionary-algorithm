@@ -29,6 +29,9 @@ def test_select():
     selector = simpleParentSelector()
     marriages = selector.getParents(population)
 
+    temp = []
+    for i in range(len(population)):
+        temp.append(population[i].getRepresentation())
     for el in marriages:
         for individual in el:
-            assert individual in population
+            assert individual.getRepresentation() in temp

@@ -11,7 +11,7 @@ def test_evaluate():
 
     assert temp != x[0].getFitnessFunctionEvaluation()
 
-    y = [FloatingPointIndividual([2.3, 4.5, 0.6])]
+    y = [FloatingPointIndividual([-0.4, -2.4, 5.6])]
     temp = y[0].getFitnessFunctionEvaluation()
     evaluation = expandedSchaffers()
     evaluation.evaluate(y)
