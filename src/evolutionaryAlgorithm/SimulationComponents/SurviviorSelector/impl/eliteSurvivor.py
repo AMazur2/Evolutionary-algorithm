@@ -43,7 +43,7 @@ class eliteSurvivor(SurviviorSelectorInterface):
             for j in range(len(fitness)):
                 if k > fitness[j]:
                     k = fitness[j]
-                    index = k
+                    index = j
             del(fitness[index])
             newGeneration.append((FloatingPointIndividual(offspring[index].getRepresentation())))
             del(offspring[index])
