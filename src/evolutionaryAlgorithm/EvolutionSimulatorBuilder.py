@@ -1,6 +1,7 @@
 from typing import Dict
 
-from src.evolutionaryAlgorithm.EvolutionSimulator import EvolutionSimulator
+from src.evolutionaryAlgorithm.EvolutionSimulator import EvolutionSimulator, ObserverInterface
+from src.evolutionaryAlgorithm.Observers.impl.MinFitnessFunctionObserver import MinFitnessFunctionObserver
 from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.FitnessFunctionFactory import \
     FitnessFunctionFactory
 from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.FitnessFunctionQuadratic import \
@@ -40,6 +41,10 @@ class EvolutionSimulatorBuilder:
         "FitnessFunction": FitnessFunctionFactory
     }
 
+    observersFactory: Dict[str, ObserverInterface] = {
+        "MinFitnessFunctionObserver": MinFitnessFunctionObserver
+    }
+
     @classmethod
     def createEvolutionSimulatorFromDict(cls, config: dict):
         # componentsFactory = cls.getComponentsFactory(config)
@@ -59,7 +64,12 @@ class EvolutionSimulatorBuilder:
         for componentName, componentFactory in cls.componentsFactory.items():
             componentsImpl[componentName] = componentFactory.build(config)
 
-        return EvolutionSimulator.fromSimulationComponentList(componentsImpl)
+        observers = []
+        for observer in config["Observers"]:  # TODO add observers valdation
+            observers.append(cls.observersFactory[observer[
+                "Type"]])  # TODO cant pass arguments to observers in this architecture to do this use factory method pattern as in components Factory
+
+        return EvolutionSimulator.fromSimulationComponentList(componentsImpl, observers)
 
     # @classmethod
     # def getComponentsFactory(cls, config: dict):

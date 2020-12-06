@@ -1,5 +1,6 @@
 from typing import List
 
+from src.evolutionaryAlgorithm.Observers.ObserverInterface import ObserverInterface
 from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.FitnessFunctionInterface import \
     FitnessFunctionInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
@@ -13,15 +14,19 @@ from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.SurviviorS
 
 
 class EvolutionSimulator:
-    initializator : InitializatorInterface
-    recombinator : RecombinatorInterface
+    initializator: InitializatorInterface
+    recombinator: RecombinatorInterface
     mutator: MutatorInterface
     parentSelector: ParentSelectorInterface
     survivorSelector: SurviviorSelectorInterface
     fitnessFunction: FitnessFunctionInterface
     population: List[IndividualInterface]
 
-    def __init__(self, initializator, recombinator, mutator, parentSelector, survivorSelector, fitnessFunction):
+    def __init__(self, initializator, recombinator, mutator, parentSelector, survivorSelector, fitnessFunction,
+                 observers: List[ObserverInterface],
+                 maxSteps=20):
+        self.observers = observers
+        self.maxSteps = maxSteps
         self.isEndSimulation = False
         self.initializator = initializator
         self.recombinator = recombinator
@@ -31,7 +36,7 @@ class EvolutionSimulator:
         self.fitnessFunction = fitnessFunction
 
     @staticmethod
-    def fromSimulationComponentList(SimulationComponents):
+    def fromSimulationComponentList(SimulationComponents, observers: List[ObserverInterface]):
         initializator = SimulationComponents["Initializator"]
         recombinator = SimulationComponents["Recombinator"]
         mutator = SimulationComponents["Mutator"]
@@ -40,11 +45,12 @@ class EvolutionSimulator:
         fitnessFunction = SimulationComponents["FitnessFunction"]
 
         return EvolutionSimulator(initializator, recombinator, mutator, parentSelector, survivorSelector,
-                                  fitnessFunction)
+                                  fitnessFunction, observers)
 
     def run(self):
         population = self.initialize_population()
         # marriages = self.marry(population)
+        self.simulationStep = 0
 
         while (not self.endSimulation()):
             parents = self.selectParents(population)
@@ -52,7 +58,8 @@ class EvolutionSimulator:
             mutated = self.applyMutations(offspring)
             population = self.selectNewGeneration(mutated, population)
 
-            self.isEndSimulation = True  # TODO Remove me
+            self.observe(population, self.simulationStep)
+            self.simulationStep += 1
 
     def initialize_population(self) -> List[IndividualInterface]:
         return self.initializator.initialize()
@@ -61,7 +68,9 @@ class EvolutionSimulator:
         pass
 
     def endSimulation(self) -> bool:
-        return self.isEndSimulation
+        if self.simulationStep >= self.maxSteps:
+            return True
+        return False
 
     def selectParents(self, population: List[IndividualInterface]) -> List[List[IndividualInterface]]:
         return self.parentSelector.getParents(population)
@@ -76,3 +85,7 @@ class EvolutionSimulator:
     def selectNewGeneration(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) -> List[
         IndividualInterface]:
         return self.survivorSelector.selectSurvivor(population, offspring)
+
+    def observe(self, population: List[IndividualInterface], step: int):
+        for observer in self.observers:
+            observer.observe(population, step)
