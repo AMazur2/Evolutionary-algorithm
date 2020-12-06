@@ -1,19 +1,20 @@
-from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.weierstrass import weierstrass
-from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.expandedSchaffers import expandedSchaffers
-from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual import \
-    FloatingPointIndividual
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.ExpandedSchaffers import ExpandedSchaffers
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.Weierstrass import Weierstrass
+from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividualFactory import \
+    FloatingPointIndividualFactory
 
-def test_evaluate():
-    x = [FloatingPointIndividual([1.0, 0.5, 3.0])]
-    temp = x[0].getFitnessFunctionEvaluation()
-    evaluation = weierstrass()
-    evaluation.evaluate(x)
 
-    assert temp != x[0].getFitnessFunctionEvaluation()
+def test_weierstreass_fitness_function():
+    factory = FloatingPointIndividualFactory(Weierstrass())
+    x = [factory.getIndividual([0, 0])]
+    eveluation = x[0].getEvaluation()
 
-    y = [FloatingPointIndividual([-0.4, -2.4, 5.6])]
-    temp = y[0].getFitnessFunctionEvaluation()
-    evaluation = expandedSchaffers()
-    evaluation.evaluate(y)
+    assert eveluation == 0
 
-    assert temp != y[0].getFitnessFunctionEvaluation()
+
+def test_weierstreass_extended_fitness_function():
+    factory = FloatingPointIndividualFactory(ExpandedSchaffers())
+    x = [factory.getIndividual([0, 0])]
+    eveluation = x[0].getEvaluation()
+
+    assert eveluation == 0

@@ -1,20 +1,21 @@
-from typing import List
 from random import randint
 from random import random
+from typing import List
 
-from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorInterface import RecombinatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
-from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual \
-    import FloatingPointIndividual
+from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividualFactory import \
+    FloatingPointIndividualFactory
+from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorInterface import RecombinatorInterface
 
 
 class twoPointRecombinator(RecombinatorInterface):
 
     def __init__(self, probability: float):
         self.probability = probability
+        self.individualFactory = FloatingPointIndividualFactory.getFactory()
 
     def recombine(self, marriages: List[List[IndividualInterface]]) -> List[IndividualInterface]:
-        dim = len(marriages[0][0].getRepresentation())-1
+        dim = len(marriages[0][0].getRepresentation()) - 1
         firstPoint = randint(0, dim)
         secondPoint = randint(firstPoint, dim)
         childrens = []
@@ -33,6 +34,6 @@ class twoPointRecombinator(RecombinatorInterface):
             else:
                 temp1 = el[0]
                 temp2 = el[1]
-            childrens.append(FloatingPointIndividual(temp1))
-            childrens.append(FloatingPointIndividual(temp2))
+            childrens.append(self.individualFactory.getIndividual(temp1))
+            childrens.append(self.individualFactory.getIndividual(temp2))
         return childrens

@@ -1,10 +1,14 @@
 from abc import abstractmethod
 from typing import List
-from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
 
 
 class FitnessFunctionInterface:
 
     @abstractmethod
-    def evaluate(self, representation: List[IndividualInterface]):
+    def evaluate(self, representation: List[float]) -> float:
+        '''
+        Count fitness function for floating pointed representation of individual
+        :param representation: #TODO fill me
+        :return:
+        '''
         pass

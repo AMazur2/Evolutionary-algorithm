@@ -1,6 +1,6 @@
 from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction import FitnessFunctionInterface
-from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.weierstrass import weierstrass
-from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.expandedSchaffers import expandedSchaffers
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.ExpandedSchaffers import ExpandedSchaffers
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.Weierstrass import Weierstrass
 from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentFactoryInterface import \
     SimulationComponentFactoryInterface
 
@@ -15,8 +15,8 @@ class FitnessFunctionFactory(SimulationComponentFactoryInterface):
 
         fitnessFunction = config["FitnessFunction"]
         if fitnessFunction["Type"] == "weierstrass":
-            return weierstrass()
+            return Weierstrass()
         elif fitnessFunction["Type"] == "expandedSchaffers":
-            return expandedSchaffers()
+            return ExpandedSchaffers()
         else:
             raise NotImplementedError()

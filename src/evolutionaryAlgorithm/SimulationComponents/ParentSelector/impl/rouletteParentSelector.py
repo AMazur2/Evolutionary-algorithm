@@ -1,11 +1,9 @@
-from typing import List
 from random import uniform
+from typing import List
 
+from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
 from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.ParentSelectorInterface \
     import ParentSelectorInterface
-from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
-from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual import \
-    FloatingPointIndividual
 
 
 class rouletteParentSelector(ParentSelectorInterface):
@@ -17,7 +15,7 @@ class rouletteParentSelector(ParentSelectorInterface):
         popNum = len(population)
         fitness = []
         for el in population:
-            fitness.append(el.getFitnessFunctionEvaluation())
+            fitness.append(el.getEvaluation())
         max, min, sum = 0, fitness[0], 0
         for i in range(popNum):
             sum += fitness[i]
