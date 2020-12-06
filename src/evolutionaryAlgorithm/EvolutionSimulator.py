@@ -1,4 +1,5 @@
 from typing import List
+
 from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.FitnessFunctionInterface import \
     FitnessFunctionInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
@@ -43,14 +44,12 @@ class EvolutionSimulator:
 
     def run(self):
         population = self.initialize_population()
-        self.markPopulation(population)
         # marriages = self.marry(population)
 
         while (not self.endSimulation()):
             parents = self.selectParents(population)
             offspring = self.applyRecombinations(parents)
             mutated = self.applyMutations(offspring)
-            self.markPopulation(mutated)
             population = self.selectNewGeneration(mutated, population)
 
             self.isEndSimulation = True  # TODO Remove me
@@ -60,9 +59,6 @@ class EvolutionSimulator:
 
     def marry(self, population: List[IndividualInterface]) -> List[List[IndividualInterface]]:
         pass
-
-    def markPopulation(self, population: List[IndividualInterface]):
-        self.fitnessFunction.evaluate(population)
 
     def endSimulation(self) -> bool:
         return self.isEndSimulation

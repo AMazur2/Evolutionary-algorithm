@@ -10,9 +10,5 @@ class IndividualInterface(SimulationComponentInterface):
         pass
 
     @abstractmethod
-    def getFitnessFunctionEvaluation(self):
-        pass
-
-    @abstractmethod
-    def setFitnessFunctionEvaluation(self, value: float):
+    def getEvaluation(self):
         pass

@@ -1,6 +1,12 @@
 from typing import Dict
 
 from src.evolutionaryAlgorithm.EvolutionSimulator import EvolutionSimulator
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.FitnessFunctionFactory import \
+    FitnessFunctionFactory
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.FitnessFunctionQuadratic import \
+    FitnessFunctionQuadratic
+from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividualFactory import \
+    FloatingPointIndividualFactory
 from src.evolutionaryAlgorithm.SimulationComponents.Initializator.InitializatorFactory import InitializatorFactory
 from src.evolutionaryAlgorithm.SimulationComponents.Mutator.MutatorFactory import MutatorFactory
 from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.ParentSelectorFactory import ParentSelectorFactory
@@ -10,8 +16,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentFactoryIn
 from src.evolutionaryAlgorithm.SimulationComponents.SimulationComponentInterface import SimulationComponentInterface
 from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.SurviviorSelectorFactory import \
     SurviviorSelectorFactory
-from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.FitnessFunctionFactory import \
-    FitnessFunctionFactory
+
 
 class EvolutionSimulatorBuilder:
     # implementedComponents = {
@@ -47,6 +52,10 @@ class EvolutionSimulatorBuilder:
             print(f"For component {componentFactory}, parameter is invalid. {err}")
 
         componentsImpl: Dict[str, SimulationComponentInterface] = {}
+
+        FloatingPointIndividualFactory.createFactory(
+            FitnessFunctionQuadratic())  # TODO change argument to this config["FitnessFunction"]
+
         for componentName, componentFactory in cls.componentsFactory.items():
             componentsImpl[componentName] = componentFactory.build(config)
 

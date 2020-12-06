@@ -1,16 +1,17 @@
-from typing import List
 from random import random
+from typing import List
 
-from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorInterface import RecombinatorInterface
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterface import IndividualInterface
-from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual \
-    import FloatingPointIndividual
+from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividualFactory import \
+    FloatingPointIndividualFactory
+from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.RecombinatorInterface import RecombinatorInterface
 
 
 class averageRecombinator(RecombinatorInterface):
 
-    def __init__ (self, probability: float):
+    def __init__(self, probability: float):
         self.probability = probability
+        self.individualFactory = FloatingPointIndividualFactory.getFactory()
 
     def subcross(self, marriage: List[IndividualInterface], w: float) -> IndividualInterface:
         temp = []
@@ -18,7 +19,7 @@ class averageRecombinator(RecombinatorInterface):
         t2 = marriage[1].getRepresentation()
         for i in range(len(t1)):
             temp.append(w*t1[i]+(1-w)*t2[i])
-        return FloatingPointIndividual(temp)
+        return self.individualFactory.getIndividual(temp)
 
     def recombine(self, marriages: List[List[IndividualInterface]]) -> List[IndividualInterface]:
         childrens = []

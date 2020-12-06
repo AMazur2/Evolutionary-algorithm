@@ -15,7 +15,7 @@ class RouletteSurvivorSelector(SurviviorSelectorInterface):
         number = len(population)
         fitness = []
         for el in population:
-            fitness.append(el.getFitnessFunctionEvaluation())
+            fitness.append(el.getEvaluation())
         max, min, sum = 0, fitness[0], 0
         for i in range(number):
             sum += fitness[i]
