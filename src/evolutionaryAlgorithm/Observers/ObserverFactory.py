@@ -11,11 +11,14 @@ class ObserverFactory():
         pass
 
     @staticmethod
-    def build(observer_config: dict):
+    def build(observer_config: dict, workingDirectoryPath: str, simulationName: str):
+        dir_path = os.path.join(workingDirectoryPath, simulationName, observer_config["Arguments"]["OutputDirectory"])
         if observer_config["Type"] == "MinFitnessFunctionObserver":
-            Path(observer_config["Arguments"]["OutputDirectory"]).mkdir(exist_ok=True)
+            Path(workingDirectoryPath).mkdir(exist_ok=True)
+            Path(os.path.join(workingDirectoryPath, simulationName)).mkdir(exist_ok=True)
+            Path(dir_path).mkdir(exist_ok=True)
             return MinFitnessFunctionObserver(
-                path=os.path.join(observer_config["Arguments"]["OutputDirectory"], observer_config["Arguments"][
+                path=os.path.join(dir_path, observer_config["Arguments"][
                     "OutputFileName"]))
 
         else:

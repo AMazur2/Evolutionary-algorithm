@@ -1,4 +1,6 @@
 {
+  "SimulationName": "minFitnessFunctionInGeneration",
+  "WorkingDirectoryPath": "output",
   "Initializator": {
     "Type": "Random",
     "Arguments": {
@@ -41,7 +43,7 @@
     {
       "Type": "MinFitnessFunctionObserver",
       "Arguments": {
-        "OutputDirectory": "output",
+        "OutputDirectory": "",
         "OutputFileName": "out1.txt"
       }
     }

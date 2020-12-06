@@ -64,7 +64,8 @@ class EvolutionSimulatorBuilder:
 
         observers = []
         for observer_config in config["Observers"]:  # TODO add observers valdation
-            observers.append(cls.observersFactory.build(observer_config))
+            observers.append(cls.observersFactory.build(observer_config, config["WorkingDirectoryPath"],
+                                                        config["SimulationName"]))
 
         return EvolutionSimulator.fromSimulationComponentList(componentsImpl, observers)
 

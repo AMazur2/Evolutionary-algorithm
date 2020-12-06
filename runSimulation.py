@@ -1,4 +1,6 @@
 import json
+import os
+from shutil import copy
 
 from src.evolutionaryAlgorithm.EvolutionSimulatorBuilder import EvolutionSimulatorBuilder
 
@@ -13,3 +15,5 @@ if __name__ == '__main__':
         evolutionSimulator = EvolutionSimulatorBuilder.createEvolutionSimulatorFromDict(config)
 
         evolutionSimulator.run()
+
+    copy(configFile, os.path.join(config["WorkingDirectoryPath"], config["SimulationName"]))
