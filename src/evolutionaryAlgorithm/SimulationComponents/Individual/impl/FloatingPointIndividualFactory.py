@@ -26,5 +26,7 @@ class FloatingPointIndividualFactory():
     def createFactory(cls, fitnessFunction: FitnessFunctionInterface):
         if cls.instance == None:
             cls.instance = FloatingPointIndividualFactory(fitnessFunction)
+        elif cls.instance.fitnessFunction == fitnessFunction:
+            return
         else:
             raise Exception("Factory is created ")

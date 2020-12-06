@@ -8,6 +8,8 @@ if __name__ == '__main__':
     with open(configFile, 'r') as f:
         config = json.load(f)
 
-    evolutionSimulator = EvolutionSimulatorBuilder.createEvolutionSimulatorFromDict(config)
+    for simulation_run in range(50):
+        config["Observers"][0]["Arguments"]["OutputFileName"] = "out{:02d}.txt".format(simulation_run)
+        evolutionSimulator = EvolutionSimulatorBuilder.createEvolutionSimulatorFromDict(config)
 
-    evolutionSimulator.run()
+        evolutionSimulator.run()

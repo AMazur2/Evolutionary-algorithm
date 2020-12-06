@@ -20,3 +20,8 @@ class ExpandedSchaffers(FitnessFunctionInterface):
             t2 = t2 * t2
             sm += 0.5 + t1 / t2
         return sm
+
+    def __eq__(self, o: object) -> bool:  # TODO refactor if use parameters
+        if isinstance(o, ExpandedSchaffers):
+            return True
+        return False
