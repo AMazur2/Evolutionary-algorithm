@@ -9,11 +9,14 @@ class FloatingPointIndividual(IndividualInterface):
     fitnessFunction = FitnessFunctionQuadratic()  # TODO add this as parameter of individual factory, also constructor should be privet
 
     def __init__(self, representation: List[float]):
-        self.representation = representation
-        self.fitnessFunctionEvaluation = FloatingPointIndividual.fitnessFunction.evaluate(representation)
+        self.__representation = representation
+        self.__fitnessFunctionEvaluation = FloatingPointIndividual.fitnessFunction.evaluate(representation)
 
     def getRepresentation(self):
-        return self.representation
+        return list(self.__representation)
 
     def getEvaluation(self):
-        return self.fitnessFunctionEvaluation
+        return self.__fitnessFunctionEvaluation
+
+    def setFitnessFunctionEvaluation(self, value: float):
+        self.__fitnessFunctionEvaluation = value

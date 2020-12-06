@@ -8,3 +8,11 @@ class IndividualInterface(SimulationComponentInterface):
     @abstractmethod
     def getRepresentation(self):
         pass
+
+    @abstractmethod
+    def getFitnessFunctionEvaluation(self):
+        pass
+
+    @abstractmethod
+    def setFitnessFunctionEvaluation(self, value: float):
+        pass
