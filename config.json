@@ -1,0 +1,49 @@
+{
+  "Initializator": {
+    "Type": "Random",
+    "Arguments": {
+      "PopulationSize": 10
+    }
+  },
+  "IndividualRepresentation": {
+    "Type": "FloatingPointRepresentation",
+    "Arguments": {
+      "Dimensions": 2,
+      "Range": {
+        "Min": -10,
+        "Max": 10
+      }
+    }
+  },
+  "FitnessFunction": {
+    "Type": "weierstrass"
+  },
+  "Recombinator": {
+    "Type": "singlePointRecombinator",
+    "Arguments": {
+      "Probability": 0.85
+    }
+  },
+  "Mutator": {
+    "Type": "Gauss",
+    "Arguments": {
+      "Sigma": 1.0,
+      "Probability": 0.1
+    }
+  },
+  "ParentSelector": {
+    "Type": "rouletteParentSelector"
+  },
+  "SurvivorSelector": {
+    "Type": "eliteSurvivor"
+  },
+  "Observers": [
+    {
+      "Type": "MinFitnessFunctionObserver",
+      "Arguments": {
+        "OutputDirectory": "output",
+        "OutputFileName": "out1.txt"
+      }
+    }
+  ]
+}
