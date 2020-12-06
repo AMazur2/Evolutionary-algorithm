@@ -1,6 +1,6 @@
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual import \
     FloatingPointIndividual
-from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.impl.eliteSurvivors import eliteSurvivor
+from src.evolutionaryAlgorithm.SimulationComponents.SurviviorSelector.impl.eliteSurvivor import eliteSurvivor
 
 
 def test_SurvivorSelector():
