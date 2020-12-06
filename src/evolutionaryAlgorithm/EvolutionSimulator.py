@@ -79,9 +79,4 @@ class EvolutionSimulator:
 
     def selectNewGeneration(self, offspring: List[IndividualInterface], population: List[IndividualInterface]) -> List[
         IndividualInterface]:
-        temporary = []
-        for el in offspring:
-            temporary.append(el)
-        for el in population:
-            temporary.append(el)
-        return self.survivorSelector.selectSurvivor(temporary)
+        return self.survivorSelector.selectSurvivor(population, offspring)
