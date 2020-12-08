@@ -1,12 +1,13 @@
+#!venv/bin/python
 import json
 import os
+import sys
 from shutil import copy
 
 from src.evolutionaryAlgorithm.EvolutionSimulatorBuilder import EvolutionSimulatorBuilder
 
 if __name__ == '__main__':
-    configFile = "config.json"
-
+    configFile = sys.argv[1]
     with open(configFile, 'r') as f:
         config = json.load(f)
 
