@@ -12,7 +12,7 @@ class MinFitnessFunctionObserver(ObserverInterface):
             f.write("")
 
     def observe(self, population: List[IndividualInterface], step: int):
-        evaluationMin = 999999  # TODO change this
+        evaluationMin = population[0].getEvaluation()
         for individual in population:
             evaluation = individual.getEvaluation()
             if evaluation < evaluationMin:
