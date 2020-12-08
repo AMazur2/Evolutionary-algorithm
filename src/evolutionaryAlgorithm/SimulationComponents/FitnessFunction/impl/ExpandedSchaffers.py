@@ -25,3 +25,6 @@ class ExpandedSchaffers(FitnessFunctionInterface):
         if isinstance(o, ExpandedSchaffers):
             return True
         return False
+
+    def __repr__(self) -> str:
+        return "ExpandedSchaffers"

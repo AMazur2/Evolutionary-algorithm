@@ -2,6 +2,10 @@ from typing import List
 
 from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.FitnessFunctionInterface import \
     FitnessFunctionInterface
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.ExpandedSchaffers import ExpandedSchaffers
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.FitnessFunctionQuadratic import \
+    FitnessFunctionQuadratic
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.Weierstrass import Weierstrass
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividual import \
     FloatingPointIndividual
 
@@ -23,10 +27,17 @@ class FloatingPointIndividualFactory():
             return cls.instance
 
     @classmethod
-    def createFactory(cls, fitnessFunction: FitnessFunctionInterface):
+    def createFactory(cls, fitnessFunctionName: str):
         if cls.instance == None:
-            cls.instance = FloatingPointIndividualFactory(fitnessFunction)
-        elif cls.instance.fitnessFunction == fitnessFunction:
+            if fitnessFunctionName == "FitnessFunctionQuadratic":
+                cls.instance = FloatingPointIndividualFactory(FitnessFunctionQuadratic())
+            elif fitnessFunctionName == "Weierstrass":
+                cls.instance = FloatingPointIndividualFactory(Weierstrass())
+            elif fitnessFunctionName == "ExpandedSchaffers":
+                cls.instance = FloatingPointIndividualFactory(ExpandedSchaffers())
+            else:
+                raise NotImplementedError
+        elif str(cls.instance.fitnessFunction) == fitnessFunctionName:
             return
         else:
             raise Exception("Factory is created ")

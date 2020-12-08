@@ -1,10 +1,11 @@
 {
-  "SimulationName": "minFitnessFunctionInGeneration",
+  "SimulationName": "speedOfConvergenceSmallPopulationMoreStepsExpandedSchaffers",
   "WorkingDirectoryPath": "output",
+  "NumberOfSimulationSteps": 50,
   "Initializator": {
     "Type": "Random",
     "Arguments": {
-      "PopulationSize": 10
+      "PopulationSize": 20
     }
   },
   "IndividualRepresentation": {
@@ -18,7 +19,7 @@
     }
   },
   "FitnessFunction": {
-    "Type": "weierstrass"
+    "Type": "ExpandedSchaffers"
   },
   "Recombinator": {
     "Type": "singlePointRecombinator",
@@ -30,7 +31,7 @@
     "Type": "Gauss",
     "Arguments": {
       "Sigma": 1.0,
-      "Probability": 0.1
+      "Probability": 0.5
     }
   },
   "ParentSelector": {

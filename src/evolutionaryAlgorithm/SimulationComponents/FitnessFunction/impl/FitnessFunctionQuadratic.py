@@ -19,3 +19,6 @@ class FitnessFunctionQuadratic(FitnessFunctionInterface):
         if isinstance(o, FitnessFunctionQuadratic):
             return True
         return False
+
+    def __repr__(self) -> str:
+        return "FitnessFunctionQuadratic"

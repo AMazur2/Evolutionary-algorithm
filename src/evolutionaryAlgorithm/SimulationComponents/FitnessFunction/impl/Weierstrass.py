@@ -33,3 +33,6 @@ class Weierstrass(FitnessFunctionInterface):
         if isinstance(o, Weierstrass):
             return True
         return False
+
+    def __repr__(self) -> str:
+        return "Weierstrass"

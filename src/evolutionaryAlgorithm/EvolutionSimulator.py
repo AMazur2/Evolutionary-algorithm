@@ -24,9 +24,9 @@ class EvolutionSimulator:
 
     def __init__(self, initializator, recombinator, mutator, parentSelector, survivorSelector, fitnessFunction,
                  observers: List[ObserverInterface],
-                 maxSteps=20):
+                 simulationSteps):
         self.observers = observers
-        self.maxSteps = maxSteps
+        self.maxSteps = simulationSteps
         self.isEndSimulation = False
         self.initializator = initializator
         self.recombinator = recombinator
@@ -36,7 +36,7 @@ class EvolutionSimulator:
         self.fitnessFunction = fitnessFunction
 
     @staticmethod
-    def fromSimulationComponentList(SimulationComponents, observers: List[ObserverInterface]):
+    def fromSimulationComponentList(SimulationComponents, simulationSteps: int, observers: List[ObserverInterface]):
         initializator = SimulationComponents["Initializator"]
         recombinator = SimulationComponents["Recombinator"]
         mutator = SimulationComponents["Mutator"]
@@ -45,7 +45,7 @@ class EvolutionSimulator:
         fitnessFunction = SimulationComponents["FitnessFunction"]
 
         return EvolutionSimulator(initializator, recombinator, mutator, parentSelector, survivorSelector,
-                                  fitnessFunction, observers)
+                                  fitnessFunction, observers, simulationSteps)
 
     def run(self):
         population = self.initialize_population()
