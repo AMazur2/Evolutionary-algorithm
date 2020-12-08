@@ -1,11 +1,9 @@
 from typing import Dict
 
-from src.evolutionaryAlgorithm.EvolutionSimulator import EvolutionSimulator, ObserverInterface
-from src.evolutionaryAlgorithm.Observers.impl.MinFitnessFunctionObserver import MinFitnessFunctionObserver
+from src.evolutionaryAlgorithm.EvolutionSimulator import EvolutionSimulator
+from src.evolutionaryAlgorithm.Observers.ObserverFactory import ObserverFactory
 from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.FitnessFunctionFactory import \
     FitnessFunctionFactory
-from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.FitnessFunctionQuadratic import \
-    FitnessFunctionQuadratic
 from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividualFactory import \
     FloatingPointIndividualFactory
 from src.evolutionaryAlgorithm.SimulationComponents.Initializator.InitializatorFactory import InitializatorFactory
@@ -41,9 +39,7 @@ class EvolutionSimulatorBuilder:
         "FitnessFunction": FitnessFunctionFactory
     }
 
-    observersFactory: Dict[str, ObserverInterface] = {
-        "MinFitnessFunctionObserver": MinFitnessFunctionObserver
-    }
+    observersFactory: ObserverFactory = ObserverFactory()
 
     @classmethod
     def createEvolutionSimulatorFromDict(cls, config: dict):
@@ -59,17 +55,18 @@ class EvolutionSimulatorBuilder:
         componentsImpl: Dict[str, SimulationComponentInterface] = {}
 
         FloatingPointIndividualFactory.createFactory(
-            FitnessFunctionQuadratic())  # TODO change argument to this config["FitnessFunction"]
+            config["FitnessFunction"]["Type"])  # TODO change argument to this config["FitnessFunction"]
 
         for componentName, componentFactory in cls.componentsFactory.items():
             componentsImpl[componentName] = componentFactory.build(config)
 
         observers = []
-        for observer in config["Observers"]:  # TODO add observers valdation
-            observers.append(cls.observersFactory[observer[
-                "Type"]])  # TODO cant pass arguments to observers in this architecture to do this use factory method pattern as in components Factory
+        for observer_config in config["Observers"]:  # TODO add observers valdation
+            observers.append(cls.observersFactory.build(observer_config, config["WorkingDirectoryPath"],
+                                                        config["SimulationName"]))
+        simulationSteps = config["NumberOfSimulationSteps"]
 
-        return EvolutionSimulator.fromSimulationComponentList(componentsImpl, observers)
+        return EvolutionSimulator.fromSimulationComponentList(componentsImpl, simulationSteps, observers)
 
     # @classmethod
     # def getComponentsFactory(cls, config: dict):

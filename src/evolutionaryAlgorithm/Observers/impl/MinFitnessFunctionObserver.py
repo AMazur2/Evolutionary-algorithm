@@ -5,22 +5,23 @@ from src.evolutionaryAlgorithm.SimulationComponents.Individual.IndividualInterfa
 
 
 class MinFitnessFunctionObserver(ObserverInterface):
-    fileName = "minFitnessFunctionObserver.txt"  # TODO change this
-    open(fileName, 'w').close()
 
-    @classmethod
-    def observe(cls, population: List[IndividualInterface], step: int):
-        evaluationMin = 999999  # TODO change this
+    def __init__(self, path: str) -> None:
+        self.fileName = path
+        with open(self.fileName, 'w') as f:
+            f.write("")
+
+    def observe(self, population: List[IndividualInterface], step: int):
+        evaluationMin = population[0].getEvaluation()
         for individual in population:
             evaluation = individual.getEvaluation()
             if evaluation < evaluationMin:
                 evaluationMin = evaluation
 
-        cls.writeToFile(step, evaluationMin)
+        self.writeToFile(step, evaluationMin)
 
-    @classmethod
-    def writeToFile(cls, step: int, evaluationMin: float):
+    def writeToFile(self, step: int, evaluationMin: float):
 
-        with open(cls.fileName, 'a') as f:
+        with open(self.fileName, 'a') as f:
             f.write(f"{step} : {evaluationMin}")
             f.write("\n")

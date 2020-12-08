@@ -28,3 +28,11 @@ class Weierstrass(FitnessFunctionInterface):
             ksm += kcs[j]
         val = sm - len(tab) * ksm
         return val
+
+    def __eq__(self, o: object) -> bool:  # TODO refactor if use parameters
+        if isinstance(o, Weierstrass):
+            return True
+        return False
+
+    def __repr__(self) -> str:
+        return "Weierstrass"

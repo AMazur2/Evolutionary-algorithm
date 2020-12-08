@@ -4,6 +4,9 @@ from src.evolutionaryAlgorithm.EvolutionSimulatorBuilder import EvolutionSimulat
 
 def test_create_evolution_simulator_from_dict():
     config = {
+        "SimulationName": "testName",
+        "WorkingDirectoryPath": "testPath",
+        "NumberOfSimulationSteps": 3,
         "Initializator": {
             "Type": "Random",
             "Arguments": {
@@ -17,7 +20,7 @@ def test_create_evolution_simulator_from_dict():
                                              "Max": 10
                                          }
                                      }},
-        "FitnessFunction": {"Type": "weierstrass"},
+        "FitnessFunction": {"Type": "Weierstrass"},
         "Recombinator": {"Type": "singlePointRecombinator",
                          "Arguments": {
                              "Probability": 0.85
@@ -30,7 +33,10 @@ def test_create_evolution_simulator_from_dict():
         "ParentSelector": {"Type": "rouletteParentSelector"},
         "SurvivorSelector": {"Type": "eliteSurvivor"},
         "Observers": [{"Type": "MinFitnessFunctionObserver",
-                       "Arguments": {}}]
+                       "Arguments": {
+                           "OutputDirectory": "",
+                           "OutputFileName": "test.txt"
+                       }}]
     }
 
     evolutionSimulator = EvolutionSimulatorBuilder.createEvolutionSimulatorFromDict(config)
