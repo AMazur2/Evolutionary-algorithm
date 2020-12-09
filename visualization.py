@@ -11,7 +11,8 @@ def plotParameterComparesonBigSmall(DirectoryName):
     array2 = getBestIndividualEvaluationAvrageOverNRuns(outputDirectory2)
 
     arange1 = np.arange(array1.shape[0])
-    assert arange1 == np.array([i for i in range(array1.shape[0])])
+    # assert arange1 == np.array([i for i in range(array1.shape[0])])
+
     arange2 = np.arange(array2.shape[0])
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=arange1, y=array1, name=f"BigPopulationLessSteps{DirectoryName}"))
@@ -92,7 +93,7 @@ def getBestIndividualEvaluationAvrageOverNRuns(dataDirectory, isAvrage: bool = T
     nSimulationRuns = 0
 
     for filename in os.listdir(dataDirectory):
-        if filename != "config.json":
+        if "config" not in str(filename):
             with open(os.path.join(dataDirectory, filename), 'r') as f:
                 for line in f:
                     step, evaluation = line.split(":")

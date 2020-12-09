@@ -1,7 +1,7 @@
 {
   "SimulationName": "speedOfConvergenceMutatorProbability0.5FitnessFunctionQuadratic",
   "WorkingDirectoryPath": "output",
-  "NumberOfSimulationSteps": 20,
+  "NumberOfSimulationSteps": 200,
   "Initializator": {
     "Type": "Random",
     "Arguments": {
