@@ -49,6 +49,7 @@ class EvolutionSimulator:
 
     def run(self):
         population = self.initialize_population()
+        population = self.getPartners(population)
         # marriages = self.marry(population)
         self.simulationStep = 0
 
@@ -56,6 +57,7 @@ class EvolutionSimulator:
             parents = self.selectParents(population)
             offspring = self.applyRecombinations(parents)
             mutated = self.applyMutations(offspring)
+            mutated = self.getPartners(mutated)
             population = self.selectNewGeneration(mutated, population)
 
             self.observe(population, self.simulationStep)
@@ -89,3 +91,6 @@ class EvolutionSimulator:
     def observe(self, population: List[IndividualInterface], step: int):
         for observer in self.observers:
             observer.observe(population, step)
+
+    def getPartners(self, mutated):
+        pass

@@ -2,7 +2,7 @@ from src.evolutionaryAlgorithm.EvolutionSimulator import EvolutionSimulator
 from src.evolutionaryAlgorithm.EvolutionSimulatorBuilder import EvolutionSimulatorBuilder
 
 
-def test_create_evolution_simulator_from_dict():
+def test_create_evolution_simulator_from_dict_Modivied():
     config = {
         "SimulationName": "testName",
         "WorkingDirectoryPath": "testPath",
@@ -12,7 +12,7 @@ def test_create_evolution_simulator_from_dict():
             "Arguments": {
                 "PopulationSize": 10
             }},
-        "IndividualRepresentation": {"Type": "FloatingPointRepresentation",
+        "IndividualRepresentation": {"Type": "FloatingPointWithConstantPairsRepresentation",
                                      "Arguments": {
                                          "Dimensions": 2,
                                          "Range": {

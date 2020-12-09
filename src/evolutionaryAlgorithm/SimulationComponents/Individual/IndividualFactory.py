@@ -16,6 +16,9 @@ class IndividualFactory(OtherElementsOnlyValidationReneameMeFactory):
         if individual["Type"] == "floatingPointIndividual":
             return FloatingPointIndividualFactory(
                 config["FitnessFunction"])  # TODO add dispathcer to create fitness funtion corectly
+        # if individual["Type"] == "floatingPointIndividualWithConstantPairs":
+        #     return FloatingPointIndividualWithConstantPairsFactory(
+        #         config["FitnessFunction"])  # TODO add dispathcer to create fitness funtion corectly
 
         else:
             raise NotImplementedError()

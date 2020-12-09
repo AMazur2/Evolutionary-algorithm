@@ -13,11 +13,13 @@ from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPoin
 class FloatingPointIndividualFactory():
     instance = None
 
-    def __init__(self, fitnessFunction: FitnessFunctionInterface) -> None:
+    def __init__(self, fitnessFunction: FitnessFunctionInterface, isModivied) -> None:
         self.fitnessFunction: FitnessFunctionInterface = fitnessFunction
+        self.isModivied = isModivied
 
     def getIndividual(self, representation: List[float]) -> FloatingPointIndividual:
-        return FloatingPointIndividual.create_from_representation_list(representation, self.fitnessFunction)
+        return FloatingPointIndividual.create_from_representation_list(representation, self.fitnessFunction,
+                                                                       self.isModivied)
 
     @classmethod
     def getFactory(cls):
@@ -27,14 +29,14 @@ class FloatingPointIndividualFactory():
             return cls.instance
 
     @classmethod
-    def createFactory(cls, fitnessFunctionName: str):
+    def createFactory(cls, fitnessFunctionName: str, isModivied: bool):
         if cls.instance == None:
             if fitnessFunctionName == "FitnessFunctionQuadratic":
-                cls.instance = FloatingPointIndividualFactory(FitnessFunctionQuadratic())
+                cls.instance = FloatingPointIndividualFactory(FitnessFunctionQuadratic(), isModivied)
             elif fitnessFunctionName == "Weierstrass":
-                cls.instance = FloatingPointIndividualFactory(Weierstrass())
+                cls.instance = FloatingPointIndividualFactory(Weierstrass(), isModivied)
             elif fitnessFunctionName == "ExpandedSchaffers":
-                cls.instance = FloatingPointIndividualFactory(ExpandedSchaffers())
+                cls.instance = FloatingPointIndividualFactory(ExpandedSchaffers(), isModivied)
             else:
                 raise NotImplementedError
         elif str(cls.instance.fitnessFunction) == fitnessFunctionName:

@@ -54,8 +54,14 @@ class EvolutionSimulatorBuilder:
 
         componentsImpl: Dict[str, SimulationComponentInterface] = {}
 
-        FloatingPointIndividualFactory.createFactory(
-            config["FitnessFunction"]["Type"])  # TODO change argument to this config["FitnessFunction"]
+        if config["IndividualRepresentation"]["Type"] == "FloatingPointRepresentation":
+            FloatingPointIndividualFactory.createFactory(
+                config["FitnessFunction"]["Type"], isModivied=False)
+        elif config["IndividualRepresentation"]["Type"] == "FloatingPointWithConstantPairsRepresentation":
+            FloatingPointIndividualFactory.createFactory(
+                config["FitnessFunction"]["Type"], isModivied=True)
+        else:
+            raise NotImplementedError
 
         for componentName, componentFactory in cls.componentsFactory.items():
             componentsImpl[componentName] = componentFactory.build(config)
