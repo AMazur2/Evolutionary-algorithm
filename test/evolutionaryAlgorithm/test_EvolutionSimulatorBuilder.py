@@ -35,8 +35,9 @@ def test_create_evolution_simulator_from_dict():
         "Observers": [{"Type": "MinFitnessFunctionObserver",
                        "Arguments": {
                            "OutputDirectory": "",
-                           "OutputFileName": "test.txt"
-                       }}]
+                           "OutputFileName": {
+                               "test.txt"
+                           }}}]
     }
 
     evolutionSimulator = EvolutionSimulatorBuilder.createEvolutionSimulatorFromDict(config)
