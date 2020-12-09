@@ -112,4 +112,5 @@ if __name__ == '__main__':
     # plotParameterComparesonMutation()
     # plotParameterComparesonBigSmall()
 
-    plotParameterComparesonBigSmall("ExpandedSchaffers")
+    # plotParameterComparesonBigSmall("ExpandedSchaffers")
+    plotSpeedOfCovergence("test")

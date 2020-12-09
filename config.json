@@ -1,5 +1,5 @@
 {
-  "SimulationName": "speedOfConvergenceSmallPopulationMoreStepsExpandedSchaffers",
+  "SimulationName": "test",
   "WorkingDirectoryPath": "output",
   "NumberOfSimulationSteps": 50,
   "Initializator": {
@@ -9,7 +9,7 @@
     }
   },
   "IndividualRepresentation": {
-    "Type": "FloatingPointRepresentation",
+    "Type": "FloatingPointWithConstantPairsRepresentation",
     "Arguments": {
       "Dimensions": 2,
       "Range": {

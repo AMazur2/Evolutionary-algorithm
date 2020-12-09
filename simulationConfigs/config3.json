@@ -9,7 +9,7 @@
     }
   },
   "IndividualRepresentation": {
-    "Type": "FloatingPointRepresentation",
+    "Type": "FloatingPointWithConstantPairsRepresentation",
     "Arguments": {
       "Dimensions": 2,
       "Range": {

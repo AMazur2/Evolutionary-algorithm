@@ -10,7 +10,7 @@ def getPartners(population: List[IndividualInterface]):
     for indyvidual1 in population:
         if not indyvidual1.havePartner():
             for indyvidual2 in population:
-                if not indyvidual2.havePartner() and indyvidual1 is not indyvidual2:
+                if (not indyvidual2.havePartner()) and (indyvidual1 is not indyvidual2):
                     indyvidual1.setPartner(indyvidual2)
                     break;
 
