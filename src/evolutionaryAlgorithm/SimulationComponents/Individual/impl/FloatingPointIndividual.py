@@ -26,6 +26,9 @@ class FloatingPointIndividual(IndividualInterface):
     def getRepresentation(self) -> List[float]:
         return list(self.__representation)
 
+    def havePartner(self):
+        return self.__partner != None
+
     def setPartner(self, partner):  #: FloatingPointIndividual
         if self.__isModivied:
             if self.__partner is None:

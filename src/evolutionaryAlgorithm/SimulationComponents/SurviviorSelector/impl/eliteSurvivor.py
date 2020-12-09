@@ -29,9 +29,11 @@ class eliteSurvivor(SurviviorSelectorInterface):
                 if k > fitness[j]:
                     k = fitness[j]
                     index = j
-            del(fitness[index])
-            newGeneration.append(self.individualFactory.getIndividual(population[index].getRepresentation()))
-            del(population[index])
+            del (fitness[index])
+            newGeneration.append(population[index])
+            population.remove(population[index])
+            # newGeneration.append(self.individualFactory.getIndividual(population[index].getRepresentation()))
+            # del(population[index])
 
         fitness = []
         for el in offspring:
@@ -44,8 +46,10 @@ class eliteSurvivor(SurviviorSelectorInterface):
                 if k > fitness[j]:
                     k = fitness[j]
                     index = j
-            del(fitness[index])
-            newGeneration.append((self.individualFactory.getIndividual(offspring[index].getRepresentation())))
-            del(offspring[index])
+            del (fitness[index])
+            newGeneration.append(offspring[index])
+            offspring.remove(offspring[index])
+            # newGeneration.append((self.individualFactory.getIndividual(offspring[index].getRepresentation())))
+            # del(offspring[index])
 
         return newGeneration

@@ -92,5 +92,16 @@ class EvolutionSimulator:
         for observer in self.observers:
             observer.observe(population, step)
 
-    def getPartners(self, mutated):
-        pass
+    def getPartners(self, population: List[IndividualInterface]):
+        if len(population) % 2 is not 0:
+            raise Exception("Population isn't dividable by 2")
+        for indyvidual1 in population:
+            if not indyvidual1.havePartner():
+                for indyvidual2 in population:
+                    if not indyvidual2.havePartner():
+                        indyvidual1.setPartner(indyvidual2)
+                        break;
+        for indyvidual in population:
+            if not indyvidual.havePartner():
+                raise Exception("Not everyone have pair")
+        return population
