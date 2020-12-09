@@ -9,7 +9,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.impl.simplePa
 
 
 def test_select():
-    factory = FloatingPointIndividualFactory(FitnessFunctionQuadratic())
+    factory = FloatingPointIndividualFactory(FitnessFunctionQuadratic(), isModivied=False)
     selector = rouletteParentSelector()
     population = [factory.getIndividual([1, 1, 1]), factory.getIndividual([2, 2, 2]),
                   factory.getIndividual([3, 3, 3]), factory.getIndividual([4, 4, 4])]

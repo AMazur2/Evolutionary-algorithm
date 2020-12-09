@@ -7,7 +7,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.Mutator.impl.GaussMutator im
 
 def test_mutate():
     gm = GaussMutator(sigma=1.0, probabilityOfMutation=1.0)
-    factory = FloatingPointIndividualFactory(FitnessFunctionQuadratic())
+    factory = FloatingPointIndividualFactory(FitnessFunctionQuadratic(), isModivied=False)
     offspring = [factory.getIndividual([1, 1]), factory.getIndividual([0, 0])]
     mutated = gm.mutate(offspring=offspring)
 

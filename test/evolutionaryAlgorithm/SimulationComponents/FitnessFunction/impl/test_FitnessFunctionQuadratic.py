@@ -5,7 +5,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPoin
 
 
 def test_fitness_function_quadratic():
-    factory = FloatingPointIndividualFactory(FitnessFunctionQuadratic())
+    factory = FloatingPointIndividualFactory(FitnessFunctionQuadratic(), isModivied=False)
     fpi = factory.getIndividual([1, 2])
     assert 5 == fpi.getEvaluation()
 

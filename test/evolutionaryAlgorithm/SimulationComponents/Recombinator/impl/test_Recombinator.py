@@ -11,7 +11,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.Recombinator.impl.twoPointRe
 
 
 def test_Recombinator():
-    factory = FloatingPointIndividualFactory(FitnessFunctionQuadratic())
+    factory = FloatingPointIndividualFactory(FitnessFunctionQuadratic(), isModivied=False)
     marriages = [[factory.getIndividual([1, 2, 3, 4]), factory.getIndividual([5, 6, 7, 8])]]
     recombinator = singlePointRecombinator(1.0)
     childrens = recombinator.recombine(marriages)

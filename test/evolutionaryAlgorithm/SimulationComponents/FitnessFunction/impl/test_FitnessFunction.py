@@ -5,7 +5,7 @@ from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPoin
 
 
 def test_weierstreass_fitness_function():
-    factory = FloatingPointIndividualFactory(Weierstrass())
+    factory = FloatingPointIndividualFactory(Weierstrass(), isModivied=False)
     x = [factory.getIndividual([0, 0])]
     eveluation = x[0].getEvaluation()
 
@@ -13,7 +13,7 @@ def test_weierstreass_fitness_function():
 
 
 def test_weierstreass_extended_fitness_function():
-    factory = FloatingPointIndividualFactory(ExpandedSchaffers())
+    factory = FloatingPointIndividualFactory(ExpandedSchaffers(), isModivied=False)
     x = [factory.getIndividual([0, 0])]
     eveluation = x[0].getEvaluation()
 
