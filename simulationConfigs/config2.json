@@ -1,7 +1,7 @@
 {
   "SimulationName": "speedOfConvergenceBigPopulationLessStepsFitnessFunctionQuadratic",
   "WorkingDirectoryPath": "output",
-  "NumberOfSimulationSteps": 10,
+  "NumberOfSimulationSteps": 100,
   "Initializator": {
     "Type": "Random",
     "Arguments": {

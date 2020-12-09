@@ -1,7 +1,7 @@
 {
   "SimulationName": "speedOfConvergenceSmallPopulationMoreStepsWeierstrass",
   "WorkingDirectoryPath": "output",
-  "NumberOfSimulationSteps": 50,
+  "NumberOfSimulationSteps": 500,
   "Initializator": {
     "Type": "Random",
     "Arguments": {
