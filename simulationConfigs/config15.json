@@ -1,0 +1,52 @@
+{
+  "SimulationName": "speedOfConvergenceSmallPopulationMoreStepsWeierstrass",
+  "WorkingDirectoryPath": "output",
+  "NumberOfSimulationSteps": 500,
+  "Initializator": {
+    "Type": "Random",
+    "Arguments": {
+      "PopulationSize": 20
+    }
+  },
+  "IndividualRepresentation": {
+    "Type": "FloatingPointRepresentation",
+    "Arguments": {
+      "Dimensions": 2,
+      "Range": {
+        "Min": -10,
+        "Max": 10
+      }
+    }
+  },
+  "FitnessFunction": {
+    "Type": "Weierstrass"
+  },
+  "Recombinator": {
+    "Type": "singlePointRecombinator",
+    "Arguments": {
+      "Probability": 0.85
+    }
+  },
+  "Mutator": {
+    "Type": "Gauss",
+    "Arguments": {
+      "Sigma": 1.0,
+      "Probability": 0.5
+    }
+  },
+  "ParentSelector": {
+    "Type": "rouletteParentSelector"
+  },
+  "SurvivorSelector": {
+    "Type": "eliteSurvivor"
+  },
+  "Observers": [
+    {
+      "Type": "MinFitnessFunctionObserver",
+      "Arguments": {
+        "OutputDirectory": "",
+        "OutputFileName": "out1.txt"
+      }
+    }
+  ]
+}

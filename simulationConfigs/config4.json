@@ -1,0 +1,52 @@
+{
+  "SimulationName": "speedOfConvergenceMutatorProbability0.1ExpandedSchaffers",
+  "WorkingDirectoryPath": "output",
+  "NumberOfSimulationSteps": 200,
+  "Initializator": {
+    "Type": "Random",
+    "Arguments": {
+      "PopulationSize": 50
+    }
+  },
+  "IndividualRepresentation": {
+    "Type": "FloatingPointWithConstantPairsRepresentation",
+    "Arguments": {
+      "Dimensions": 2,
+      "Range": {
+        "Min": -10,
+        "Max": 10
+      }
+    }
+  },
+  "FitnessFunction": {
+    "Type": "ExpandedSchaffers"
+  },
+  "Recombinator": {
+    "Type": "singlePointRecombinator",
+    "Arguments": {
+      "Probability": 0.85
+    }
+  },
+  "Mutator": {
+    "Type": "Gauss",
+    "Arguments": {
+      "Sigma": 1.0,
+      "Probability": 0.1
+    }
+  },
+  "ParentSelector": {
+    "Type": "rouletteParentSelector"
+  },
+  "SurvivorSelector": {
+    "Type": "eliteSurvivor"
+  },
+  "Observers": [
+    {
+      "Type": "MinFitnessFunctionObserver",
+      "Arguments": {
+        "OutputDirectory": "",
+        "OutputFileName": "out1.txt"
+      }
+    }
+  ]
+}
