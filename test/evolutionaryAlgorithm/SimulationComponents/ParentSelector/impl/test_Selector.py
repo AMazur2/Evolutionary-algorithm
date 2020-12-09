@@ -1,31 +1,40 @@
+from src.evolutionaryAlgorithm.SimulationComponents.FitnessFunction.impl.FitnessFunctionQuadratic import \
+    FitnessFunctionQuadratic
+from src.evolutionaryAlgorithm.SimulationComponents.Individual.impl.FloatingPointIndividualFactory import \
+    FloatingPointIndividualFactory
+from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.impl.rouletteParentSelector import \
+    rouletteParentSelector
+from src.evolutionaryAlgorithm.SimulationComponents.ParentSelector.impl.simpleParentSelector import \
+    simpleParentSelector
+
+
 def test_select():
-    pass
-    # TODO fix this test
-    # selector = rouletteParentSelector()
-    # fitness = [0.2, 0.4, 0.5, 0.9]
-    # population = [FloatingPointIndividual([1, 1, 1]), FloatingPointIndividual([2, 2, 2]),
-    #               FloatingPointIndividual([3, 3, 3]), FloatingPointIndividual([4, 4, 4])]
-    # i = 0
-    # for el in population:
-    #     el.setFitnessFunctionEvaluation(fitness[i])
-    #     i = i + 1
-    #
-    # chosen = selector.chooseOne(population, fitness, 2.0)
-    #
-    # assert chosen in population
-    #
-    # marriages = selector.getParents(population)
-    #
-    # for el in marriages:
-    #     for individual in el:
-    #         assert individual in population
-    #
-    # selector = simpleParentSelector()
-    # marriages = selector.getParents(population)
-    #
-    # temp = []
-    # for i in range(len(population)):
-    #     temp.append(population[i].getRepresentation())
-    # for el in marriages:
-    #     for individual in el:
-    #         assert individual.getRepresentation() in temp
+    factory = FloatingPointIndividualFactory(FitnessFunctionQuadratic())
+    selector = rouletteParentSelector()
+    population = [factory.getIndividual([1, 1, 1]), factory.getIndividual([2, 2, 2]),
+                  factory.getIndividual([3, 3, 3]), factory.getIndividual([4, 4, 4])]
+    fitness = []
+    for el in population:
+        fitness.append(el.getEvaluation())
+
+    maximum = 0
+    for el in fitness:
+        if maximum < el:
+            maximum = el
+
+    chosen = selector.chooseOne(population, fitness, maximum)
+
+    assert chosen in population
+
+    marriages = selector.getParents(population)
+
+    for el in marriages:
+        for individual in el:
+            assert individual in population
+
+    selector = simpleParentSelector()
+    marriages = selector.getParents(population)
+
+    for el in marriages:
+        for individual in el:
+            assert individual in population
