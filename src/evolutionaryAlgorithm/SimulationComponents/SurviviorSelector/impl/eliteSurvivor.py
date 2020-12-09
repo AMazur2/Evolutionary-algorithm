@@ -37,7 +37,7 @@ class eliteSurvivor(SurviviorSelectorInterface):
                     bestIndyvidual = individual
             newGeneration.append(bestIndyvidual)
             newGeneration.append(bestIndyvidual.getPartner())
-            population.remove(bestIndyvidual.getPartner())
-            population.remove(bestIndyvidual)
+            offspring.remove(bestIndyvidual.getPartner())
+            offspring.remove(bestIndyvidual)
 
         return newGeneration

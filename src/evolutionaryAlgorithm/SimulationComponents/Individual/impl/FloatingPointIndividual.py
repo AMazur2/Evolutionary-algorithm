@@ -19,34 +19,34 @@ class FloatingPointIndividual(IndividualInterface):
             raise TypeError("create with Foo.create_from_*")
 
         self.__representation = representation
-        self.__fitnessFunctionEvaluation = fitnessFunction.evaluate(representation)
-        self.__partner: FloatingPointIndividual = None
-        self.__isModivied = isModivied
+        self.fitnessFunctionEvaluation = fitnessFunction.evaluate(representation)
+        self.partner: FloatingPointIndividual = None
+        self.isModivied = isModivied
 
     def getRepresentation(self) -> List[float]:
         return list(self.__representation)
 
     def havePartner(self):
-        return self.__partner != None
+        return self.partner != None
 
     def getPartner(self):
-        return self.__partner
+        return self.partner
 
     def setPartner(self, partner):  #: FloatingPointIndividual
-        if self.__isModivied:
-            if self.__partner is None:
-                self.__partner = partner
-                partner.__partner = self
+        if self.isModivied:
+            if self.partner is None:
+                self.partner = partner
+                partner.partner = self
             else:
                 raise Exception("Individual already have partner")
         else:
             raise Exception("Individual is not modivied, don't set it's Partner")
 
     def getEvaluation(self) -> float:
-        if self.__isModivied:
-            if self.__partner is None:
+        if self.isModivied:
+            if self.partner is None:
                 raise Exception("Individual doesn't have partner")
             else:
-                return min(self.__fitnessFunctionEvaluation, self.__partner.__fitnessFunctionEvaluation)
+                return min(self.fitnessFunctionEvaluation, self.partner.fitnessFunctionEvaluation)
         else:
-            return self.__fitnessFunctionEvaluation
+            return self.fitnessFunctionEvaluation
