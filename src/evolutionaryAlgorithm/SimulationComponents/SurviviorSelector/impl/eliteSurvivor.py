@@ -15,41 +15,29 @@ class eliteSurvivor(SurviviorSelectorInterface):
     def selectSurvivor(self, population: List[IndividualInterface], offspring: List[IndividualInterface]) -> \
             List[IndividualInterface]:
 
-        t = len(population)/2
+        t = len(population) / 4  # TODO population size must be defidable by 4
+        if len(population) % 4 != 0:
+            raise Exception("Population Size not dividable by 4")
         newGeneration = []
 
-        fitness = []
-        for el in population:
-            fitness.append(el.getEvaluation())
+        for i in range(int(t)):
+            bestIndyvidual = population[0]
+            for individual in population:
+                if bestIndyvidual.getEvaluation() > individual.getEvaluation():
+                    bestIndyvidual = individual
+            newGeneration.append(bestIndyvidual)
+            newGeneration.append(bestIndyvidual.getPartner())
+            population.remove(bestIndyvidual.getPartner())
+            population.remove(bestIndyvidual)
 
         for i in range(int(t)):
-            k = fitness[0]
-            index = 0
-            for j in range(len(fitness)):
-                if k > fitness[j]:
-                    k = fitness[j]
-                    index = j
-            del (fitness[index])
-            newGeneration.append(population[index])
-            population.remove(population[index])
-            # newGeneration.append(self.individualFactory.getIndividual(population[index].getRepresentation()))
-            # del(population[index])
-
-        fitness = []
-        for el in offspring:
-            fitness.append(el.getEvaluation())
-
-        for i in range(int(t)):
-            k = fitness[0]
-            index = 0
-            for j in range(len(fitness)):
-                if k > fitness[j]:
-                    k = fitness[j]
-                    index = j
-            del (fitness[index])
-            newGeneration.append(offspring[index])
-            offspring.remove(offspring[index])
-            # newGeneration.append((self.individualFactory.getIndividual(offspring[index].getRepresentation())))
-            # del(offspring[index])
+            bestIndyvidual = offspring[0]
+            for individual in offspring:
+                if bestIndyvidual.getEvaluation() > individual.getEvaluation():
+                    bestIndyvidual = individual
+            newGeneration.append(bestIndyvidual)
+            newGeneration.append(bestIndyvidual.getPartner())
+            population.remove(bestIndyvidual.getPartner())
+            population.remove(bestIndyvidual)
 
         return newGeneration

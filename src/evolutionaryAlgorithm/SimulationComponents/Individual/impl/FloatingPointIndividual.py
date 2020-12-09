@@ -29,6 +29,9 @@ class FloatingPointIndividual(IndividualInterface):
     def havePartner(self):
         return self.__partner != None
 
+    def getPartner(self):
+        return self.__partner
+
     def setPartner(self, partner):  #: FloatingPointIndividual
         if self.__isModivied:
             if self.__partner is None:

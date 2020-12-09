@@ -10,7 +10,7 @@ def test_create_evolution_simulator_from_dict_Modivied():
         "Initializator": {
             "Type": "Random",
             "Arguments": {
-                "PopulationSize": 10
+                "PopulationSize": 12
             }},
         "IndividualRepresentation": {"Type": "FloatingPointWithConstantPairsRepresentation",
                                      "Arguments": {
